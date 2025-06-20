@@ -1,0 +1,21 @@
+<Project>
+
+  <PropertyGroup>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <Authors>Oscar Fernandez Gonzalez a.k.a. Osc@rNET</Authors>
+    <Company>OscarNET-SOFTware</Company>
+    <Copyright>Copyright (c) 2025 Oscar Fernandez Gonzalez a.k.a. Osc@rNET</Copyright>
+    <Description>Just a set of essential libraries for DotNET: clean, simple and ready to use.</Description>
+    <Deterministic>true</Deterministic>
+    <ErrorReport>none</ErrorReport>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>12.0</LangVersion>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Nullable>enable</Nullable>
+    <OutputType>Library</OutputType>
+    <Product>Mondongo.Dehesa.Framework</Product>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+</Project>

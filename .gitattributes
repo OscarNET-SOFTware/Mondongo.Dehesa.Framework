@@ -1,0 +1,50 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Explicitly declare text files we want to always normalize
+*.bat           text    eol=crlf
+*.cmd           text    eol=crlf
+*.config        text    eol=crlf
+*.cs            text    eol=crlf    diff=csharp
+*.csproj        text    eol=crlf    merge=union
+*.csv           text    eol=crlf
+*.json          text    eol=crlf
+*.md            text    eol=crlf
+*.nuspec        text    eol=crlf
+*.props         text    eol=crlf
+*.ps1           text    eol=crlf    working-tree-encoding=UTF-8
+*.psm1          text    eol=crlf    working-tree-encoding=UTF-8
+*.psd1          text    eol=crlf    working-tree-encoding=UTF-8
+*.resx          text    eol=crlf
+*.ruleset       text    eol=crlf
+*.sh            text    eol=lf
+*.sln           text    eol=crlf    merge=union
+*.svg           text    eol=crlf
+*.targets       text    eol=crlf
+*.txt           text    eol=crlf
+*.vsct          text    eol=crlf
+*.vsixmanifest  text    eol=crlf
+*.xaml          text    eol=crlf
+*.xml           text    eol=crlf
+.editorconfig   text    eol=crlf
+.gitattributes  text    eol=crlf
+.gitignore      text    eol=crlf
+Jenkinsfile     text    eol=crlf
+
+# Treat audios, executables, images, libraries and other binaries as binary
+*.accdb     binary
+*.7z        binary
+*.dll       binary
+*.docx      binary
+*.exe       binary
+*.gif       binary
+*.ico       binary
+*.jpeg      binary
+*.jpg       binary
+*.mp3       binary
+*.nupkg     binary
+*.pdf       binary
+*.png       binary
+*.pptx      binary
+*.xlsx      binary
+*.zip       binary
