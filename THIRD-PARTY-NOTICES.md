@@ -4,6 +4,10 @@ This project uses third-party components. Their licenses are included in the [li
 
 ## Included Components
 
++ **.NET Extensions** ([MIT License](https://github.com/dotnet/extensions/blob/main/LICENSE))  
+  - Copyright (c) .NET Foundation.  
+    See [licenses/mit.txt](./licenses/mit.txt) for the full text.
+
 + **.NET Runtime** ([MIT License](https://github.com/dotnet/runtime/blob/main/LICENSE.TXT))  
   - Copyright (c) .NET Foundation and Contributors.  
     See [licenses/mit.txt](./licenses/mit.txt) for the full text.

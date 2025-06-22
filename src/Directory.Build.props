@@ -6,13 +6,15 @@
   <PropertyGroup>
     <Configurations>Debug;Release</Configurations>
     <DebugSymbols>true</DebugSymbols>
-    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-    <GeneratedAssemblyInfoFile>Properties/QuercusInfo.cs</GeneratedAssemblyInfoFile>
+    <Deterministic>true</Deterministic>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <IncludeSource>false</IncludeSource>
     <IncludeSymbols>false</IncludeSymbols>
     <IsPackable>true</IsPackable>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/OscarNET-SOFTware/Mondongo.Dehesa.Framework</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">

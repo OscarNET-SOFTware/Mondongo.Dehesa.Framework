@@ -6,16 +6,27 @@
     <Authors>Oscar Fernandez Gonzalez a.k.a. Osc@rNET</Authors>
     <Company>OscarNET-SOFTware</Company>
     <Copyright>Copyright (c) 2025 Oscar Fernandez Gonzalez a.k.a. Osc@rNET</Copyright>
-    <Description>Just a set of essential libraries for DotNET: clean, simple and ready to use.</Description>
-    <Deterministic>true</Deterministic>
     <ErrorReport>none</ErrorReport>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <ImplicitUsings>disable</ImplicitUsings>
     <LangVersion>12.0</LangVersion>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Nullable>enable</Nullable>
     <OutputType>Library</OutputType>
     <Product>Mondongo.Dehesa.Framework</Product>
+    <RepositoryUrl>https://github.com/OscarNET-SOFTware/Mondongo.Dehesa.Framework</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <TargetFramework>net8.0</TargetFramework>
+    <VersionPrefix>0.1.0</VersionPrefix>
+    <VersionSuffix>alpha.1</VersionSuffix>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Using Include="System" />
+    <Using Include="System.Collections.Generic" />
+    <Using Include="System.Linq" />
+    <Using Include="System.Threading" />
+    <Using Include="System.Threading.Tasks" />
+  </ItemGroup>
 
 </Project>

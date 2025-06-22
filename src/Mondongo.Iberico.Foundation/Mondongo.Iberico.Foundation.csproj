@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyTitle>Foundation library for initializing and configuring applications. Suitable for backend, frontend, console and service projects, among others. Provides essential startup and bootstrap logic. This library is part of Mondongo Dehesa Framework.</AssemblyTitle>
+    <Description>$(AssemblyTitle)</Description>
+    <PackageId>Mondongo.Iberico.Foundation</PackageId>
+    <PackageTags>oscarnet mondongo dehesa framework iberico foundation</PackageTags>
+    <Title>Mondongo Iberico Foundation (part of Mondongo Dehesa Framework)</Title>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Mondongo.Iberico.Foundation.Tests" />
+  </ItemGroup>
+
+</Project>
