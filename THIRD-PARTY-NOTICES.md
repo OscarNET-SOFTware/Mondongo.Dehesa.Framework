@@ -28,6 +28,10 @@ This project uses third-party components. Their licenses are included in the [li
   - Copyright (c) 2015 Vladimir Khorikov.  
     See [licenses/mit.txt](./licenses/mit.txt) for the full text.
 
++ **ReportGenerator** ([Apache License, Version 2.0](https://github.com/danielpalme/ReportGenerator/blob/main/LICENSE.txt))  
+  - Copyright (c) Daniel Palme.  
+    See [licenses/apache-2.0.txt](./licenses/apache-2.0.txt) for the full text.
+
 + **xUnit.net** ([Apache License, Version 2.0](https://github.com/xunit/xunit/blob/main/LICENSE))  
   - Copyright (c) .NET Foundation and Contributors.  
     See [licenses/apache-2.0.txt](./licenses/apache-2.0.txt) for the full text.
