@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Mondongo.Iberico.Extensions\Mondongo.Iberico.Extensions.csproj" />
+  </ItemGroup>
+
+</Project>

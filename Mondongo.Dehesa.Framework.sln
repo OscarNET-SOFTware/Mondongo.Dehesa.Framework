@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{058084CC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mondongo.Iberico.Foundation.Tests", "tests\Mondongo.Iberico.Foundation.Tests\Mondongo.Iberico.Foundation.Tests.csproj", "{89F29F11-4AB2-402D-85E0-C511BC3835C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mondongo.Iberico.Extensions", "src\Mondongo.Iberico.Extensions\Mondongo.Iberico.Extensions.csproj", "{69366C6E-1074-43C8-A8A3-7C3A068F0335}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mondongo.Iberico.Extensions.Tests", "tests\Mondongo.Iberico.Extensions.Tests\Mondongo.Iberico.Extensions.Tests.csproj", "{C416BD91-9910-45CD-94A9-62A961F7766B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +29,14 @@ Global
 		{89F29F11-4AB2-402D-85E0-C511BC3835C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89F29F11-4AB2-402D-85E0-C511BC3835C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89F29F11-4AB2-402D-85E0-C511BC3835C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69366C6E-1074-43C8-A8A3-7C3A068F0335}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69366C6E-1074-43C8-A8A3-7C3A068F0335}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69366C6E-1074-43C8-A8A3-7C3A068F0335}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69366C6E-1074-43C8-A8A3-7C3A068F0335}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C416BD91-9910-45CD-94A9-62A961F7766B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C416BD91-9910-45CD-94A9-62A961F7766B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C416BD91-9910-45CD-94A9-62A961F7766B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C416BD91-9910-45CD-94A9-62A961F7766B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +44,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{19C9D739-089D-4A93-9F59-DFD2EF03C984} = {F9D50B39-7ECA-4D16-ADB1-0C0AC5EF6F40}
 		{89F29F11-4AB2-402D-85E0-C511BC3835C9} = {058084CC-41A7-4944-9466-A933DC174CBA}
+		{69366C6E-1074-43C8-A8A3-7C3A068F0335} = {F9D50B39-7ECA-4D16-ADB1-0C0AC5EF6F40}
+		{C416BD91-9910-45CD-94A9-62A961F7766B} = {058084CC-41A7-4944-9466-A933DC174CBA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C858837A-6ECB-495B-857D-A30015A549A6}
