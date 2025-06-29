@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyTitle>Shared library containing reusable validation methods for use across backend and frontend projects, among others. Facilitates consistent data validation and easy integration with value objects and other domain logic. Supports data annotations and can be referenced by multiple project types to ensure uniform validation rules throughout your solution. This library is part of Mondongo Dehesa Framework.</AssemblyTitle>
+    <Description>$(AssemblyTitle)</Description>
+    <PackageId>Mondongo.Iberico.Validations</PackageId>
+    <PackageTags>oscarnet mondongo dehesa framework iberico validations</PackageTags>
+    <Title>Mondongo Iberico Validations (part of Mondongo Dehesa Framework)</Title>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mondongo.Iberico.Shared\Mondongo.Iberico.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

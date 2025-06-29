@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyTitle>Contains common types and enumerations. Ensures consistency and reusability by providing core definitions accessible to all layers. This library is part of Mondongo Dehesa Framework.</AssemblyTitle>
+    <Description>$(AssemblyTitle)</Description>
+    <PackageId>Mondongo.Iberico.Shared</PackageId>
+    <PackageTags>oscarnet mondongo dehesa framework iberico shared</PackageTags>
+    <Title>Mondongo Iberico Shared (part of Mondongo Dehesa Framework)</Title>
+  </PropertyGroup>
+
+</Project>
