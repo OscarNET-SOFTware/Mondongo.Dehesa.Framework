@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Mondongo.Iberico.IO</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Mondongo.Iberico.Extensions\Mondongo.Iberico.Extensions.csproj" />
+    <ProjectReference Include="..\..\src\Mondongo.Iberico.IO\Mondongo.Iberico.IO.csproj" />
+  </ItemGroup>
+
+</Project>

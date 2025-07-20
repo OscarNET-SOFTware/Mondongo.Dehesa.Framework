@@ -103,7 +103,7 @@ public static class StringExtensions
     /// <returns>
     ///   <c>true</c> if it's a valid path; otherwise, <c>false</c>.
     /// </returns>
-    public static bool IsValidFullPath(string? fullPath)
+    public static bool IsValidFullPath(this string? fullPath)
     {
         if (!HasBasicPathProperties(fullPath))
         {
@@ -197,7 +197,7 @@ public static class StringExtensions
     /// <returns>
     /// The sanitized folder name or file name.
     /// </returns>
-    public static string SanitizeFolderNameOrFileName([NotNull] string? folderNameOrFileName)
+    public static string SanitizeFolderNameOrFileName([NotNull] this string? folderNameOrFileName)
     {
         if (string.IsNullOrWhiteSpace(folderNameOrFileName))
         {
