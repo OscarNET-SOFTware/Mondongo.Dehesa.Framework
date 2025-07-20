@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Mondongo.Bellotero.Domain</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Mondongo.Bellotero.Domain.Abstractions\Mondongo.Bellotero.Domain.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\Mondongo.Iberico.Extensions\Mondongo.Iberico.Extensions.csproj" />
+  </ItemGroup>
+
+</Project>

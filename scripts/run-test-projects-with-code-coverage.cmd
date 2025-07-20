@@ -46,7 +46,7 @@ for /f "tokens=*" %%a in ('dir %_TestsDir%\*.tests.csproj /s /b /o:n /a-d') do (
         --runtime %_DotNetRuntime% ^
         --verbosity quiet ^
         -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.DeterministicReport=true ^
-        -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.ExcludeByAttribute=Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute ^
+        -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.ExcludeByAttribute=Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute,DebuggerDisplayAttribute ^
         -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura >nul
 )
 

@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyTitle>Abstractions for Domain-Driven Design. This library is part of Mondongo Dehesa Framework.</AssemblyTitle>
+    <Description>$(AssemblyTitle)</Description>
+    <PackageId>Mondongo.Bellotero.Domain.Abstractions</PackageId>
+    <PackageTags>oscarnet mondongo dehesa framework bellotero domain abstractions</PackageTags>
+    <RootNamespace>Mondongo.Bellotero.Domain</RootNamespace>
+    <Title>Mondongo Bellotero Domain Abstractions (part of Mondongo Dehesa Framework)</Title>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Using Include="CSharpFunctionalExtensions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CSharpFunctionalExtensions" />
+  </ItemGroup>
+
+</Project>

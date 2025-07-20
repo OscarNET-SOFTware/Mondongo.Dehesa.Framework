@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mondongo.Iberico.Validation
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mondongo.Iberico.Shared", "src\Mondongo.Iberico.Shared\Mondongo.Iberico.Shared.csproj", "{92AAB5E0-D9E1-4E8B-B8C0-150F79EC3C61}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mondongo.Bellotero.Domain.Abstractions", "src\Mondongo.Bellotero.Domain.Abstractions\Mondongo.Bellotero.Domain.Abstractions.csproj", "{13137129-9D3F-48AD-BF1D-3E15370F7CDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mondongo.Bellotero.Domain.Tests", "tests\Mondongo.Bellotero.Domain.Tests\Mondongo.Bellotero.Domain.Tests.csproj", "{37856D7C-0DD3-4327-BE0A-14219FE5E0C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +59,14 @@ Global
 		{92AAB5E0-D9E1-4E8B-B8C0-150F79EC3C61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92AAB5E0-D9E1-4E8B-B8C0-150F79EC3C61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92AAB5E0-D9E1-4E8B-B8C0-150F79EC3C61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13137129-9D3F-48AD-BF1D-3E15370F7CDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13137129-9D3F-48AD-BF1D-3E15370F7CDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13137129-9D3F-48AD-BF1D-3E15370F7CDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13137129-9D3F-48AD-BF1D-3E15370F7CDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37856D7C-0DD3-4327-BE0A-14219FE5E0C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37856D7C-0DD3-4327-BE0A-14219FE5E0C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37856D7C-0DD3-4327-BE0A-14219FE5E0C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37856D7C-0DD3-4327-BE0A-14219FE5E0C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +79,8 @@ Global
 		{21A37659-66C6-41A7-AC6D-1783DD235EF9} = {F9D50B39-7ECA-4D16-ADB1-0C0AC5EF6F40}
 		{12F526C8-7A25-4E9B-B883-424A5AE40078} = {058084CC-41A7-4944-9466-A933DC174CBA}
 		{92AAB5E0-D9E1-4E8B-B8C0-150F79EC3C61} = {F9D50B39-7ECA-4D16-ADB1-0C0AC5EF6F40}
+		{13137129-9D3F-48AD-BF1D-3E15370F7CDB} = {F9D50B39-7ECA-4D16-ADB1-0C0AC5EF6F40}
+		{37856D7C-0DD3-4327-BE0A-14219FE5E0C2} = {058084CC-41A7-4944-9466-A933DC174CBA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C858837A-6ECB-495B-857D-A30015A549A6}
