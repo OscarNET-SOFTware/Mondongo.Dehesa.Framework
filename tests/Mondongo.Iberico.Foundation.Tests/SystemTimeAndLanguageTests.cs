@@ -16,7 +16,7 @@ using System.Runtime.InteropServices;
 
 using Microsoft.Extensions.Time.Testing;
 
-namespace Mondongo.Iberico.Foundation.Tests;
+namespace Mondongo.Iberico.Foundation;
 
 public sealed class SystemTimeAndLanguageTests
 {
@@ -58,7 +58,7 @@ public sealed class SystemTimeAndLanguageTests
     };
 
     [Fact]
-    public Task Should_returns_expected_local_now()
+    public void Should_returns_expected_local_now()
     {
         SystemTimeProviderInternal timeProviderMadrid = new(s_timeZoneEuropeMadrid.Id);
         SystemTimeProviderInternal timeProviderMexico = new(s_timeZoneAmericaMexicoCity.Id);
@@ -73,12 +73,10 @@ public sealed class SystemTimeAndLanguageTests
         Assert.Equal(expected: timeProviderMexico.GetLocalNow().DateTime,
                      actual: sutMexico.GetLocalNow(),
                      precision: TimeSpan.FromSeconds(1));
-
-        return Task.CompletedTask;
     }
 
     [Fact]
-    public Task Should_returns_expected_utc_now()
+    public void Should_returns_expected_utc_now()
     {
         SystemTimeProviderInternal timeProviderMadrid = new(s_timeZoneEuropeMadrid.Id);
         SystemTimeProviderInternal timeProviderMexico = new(s_timeZoneAmericaMexicoCity.Id);
@@ -93,13 +91,11 @@ public sealed class SystemTimeAndLanguageTests
         Assert.Equal(expected: TimeZoneInfo.ConvertTimeToUtc(timeProviderMexico.GetLocalNow().DateTime, s_timeZoneAmericaMexicoCity),
                      actual: sutMexico.GetUtcNow(),
                      precision: TimeSpan.FromSeconds(1));
-
-        return Task.CompletedTask;
     }
 
     [Theory]
     [MemberData(nameof(s_timeAndLanguageData))]
-    public Task Should_returns_local_now_according_specified_time_provider(string timeZoneId,
+    public void Should_returns_local_now_according_specified_time_provider(string timeZoneId,
                                                                            DateTime localTime,
                                                                            string cultureName)
     {
@@ -112,13 +108,11 @@ public sealed class SystemTimeAndLanguageTests
         Assert.Equal(expected: localTime,
                      actual: sut.GetLocalNow(),
                      precision: TimeSpan.Zero);
-
-        return Task.CompletedTask;
     }
 
     [Theory]
     [MemberData(nameof(s_timeAndLanguageData))]
-    public Task Should_returns_utc_now_according_specified_time_provider(string timeZoneId,
+    public void Should_returns_utc_now_according_specified_time_provider(string timeZoneId,
                                                                          DateTime localTime,
                                                                          string cultureName)
     {
@@ -132,13 +126,11 @@ public sealed class SystemTimeAndLanguageTests
         Assert.Equal(expected: TimeZoneInfo.ConvertTimeToUtc(localTime, timeZone),
                      actual: sut.GetUtcNow(),
                      precision: TimeSpan.Zero);
-
-        return Task.CompletedTask;
     }
 
     [Theory]
     [MemberData(nameof(s_timeAndLanguageData))]
-    public Task Should_returns_same_culture_name_and_time_zone_identifier(string timeZoneId,
+    public void Should_returns_same_culture_name_and_time_zone_identifier(string timeZoneId,
                                                                           DateTime _,
                                                                           string cultureName)
     {
@@ -146,12 +138,10 @@ public sealed class SystemTimeAndLanguageTests
 
         Assert.Equal(expected: cultureName, actual: sut.Culture.Name, ignoreCase: true);
         Assert.Equal(expected: timeZoneId, actual: sut.TimeZone.Id, ignoreCase: true);
-
-        return Task.CompletedTask;
     }
 
     [Fact]
-    public Task Should_returns_same_culture_name_and_time_zone_identifier_when_using_default_constructor()
+    public void Should_returns_same_culture_name_and_time_zone_identifier_when_using_default_constructor()
     {
         string cultureName = "es-ES";
         string timeZoneId = s_timeZoneEuropeMadrid.Id;
@@ -160,7 +150,5 @@ public sealed class SystemTimeAndLanguageTests
 
         Assert.Equal(expected: cultureName, actual: sut.Culture.Name, ignoreCase: true);
         Assert.Equal(expected: timeZoneId, actual: sut.TimeZone.Id, ignoreCase: true);
-
-        return Task.CompletedTask;
     }
 }

@@ -14,7 +14,7 @@
 
 using System.Globalization;
 
-namespace Mondongo.Iberico.Foundation.Tests;
+namespace Mondongo.Iberico.Foundation;
 
 public sealed class SystemBootstrapperTests
 {

@@ -14,7 +14,7 @@
 
 using Mondongo.Iberico.Shared.Enums;
 
-namespace Mondongo.Iberico.Validations.Tests;
+namespace Mondongo.Iberico.Validations;
 
 public sealed class NifValidatorTests
 {
@@ -169,75 +169,66 @@ public sealed class NifValidatorTests
 
     [Theory]
     [MemberData(nameof(s_wrongTaxIdentificationNumberData))]
-    public Task IsValid_should_returns_false_when_tax_identification_number_is_wrong(string? value, NifPerson type)
+    public void IsValid_should_returns_false_when_tax_identification_number_is_wrong(string? value, NifPerson type)
     {
         Assert.False(NifValidator.IsValid(value, type));
-        return Task.CompletedTask;
     }
 
     [Theory]
     [MemberData(nameof(s_validTaxIdentificationNumberData))]
-    public Task IsValid_should_returns_true_when_tax_identification_number_is_valid(string? value, NifPerson type)
+    public void IsValid_should_returns_true_when_tax_identification_number_is_valid(string? value, NifPerson type)
     {
         Assert.True(NifValidator.IsValid(value, type));
-        return Task.CompletedTask;
     }
 
     [Theory]
     [InlineData("ABCDEFGHI")]
     [InlineData("U10418440")]
     [InlineData("Y7470363T")]
-    public Task IsValid_should_always_returns_false_for_wrong_tax_identification_number_type(string? value)
+    public void IsValid_should_always_returns_false_for_wrong_tax_identification_number_type(string? value)
     {
         Assert.False(NifValidator.IsValid(value, NifPerson.Wrong));
-        return Task.CompletedTask;
     }
 
     [Theory]
     [MemberData(nameof(s_wrongCifData))]
-    public Task IsValidCif_should_returns_false_when_cif_is_wrong(string? sut)
+    public void IsValidCif_should_returns_false_when_cif_is_wrong(string? sut)
     {
         Assert.False(NifValidator.IsValidCif(sut));
-        return Task.CompletedTask;
     }
 
     [Theory]
     [MemberData(nameof(s_validCifData))]
-    public Task IsValidCif_should_returns_true_when_cif_is_valid(string? sut)
+    public void IsValidCif_should_returns_true_when_cif_is_valid(string? sut)
     {
         Assert.True(NifValidator.IsValidCif(sut));
-        return Task.CompletedTask;
     }
 
     [Theory]
     [MemberData(nameof(s_validNieData))]
-    public Task IsValidNie_should_returns_true_when_nie_is_valid(string? sut)
+    public void IsValidNie_should_returns_true_when_nie_is_valid(string? sut)
     {
         Assert.True(NifValidator.IsValidNie(sut));
-        return Task.CompletedTask;
     }
 
     [Theory]
     [MemberData(nameof(s_wrongNieData))]
-    public Task IsValidNie_should_returns_false_when_nie_is_wrong(string? sut)
+    public void IsValidNie_should_returns_false_when_nie_is_wrong(string? sut)
     {
         Assert.False(NifValidator.IsValidNie(sut));
-        return Task.CompletedTask;
     }
 
     [Theory]
     [MemberData(nameof(s_validNifData))]
-    public Task IsValidNif_should_returns_true_when_nif_is_valid(string? sut)
+    public void IsValidNif_should_returns_true_when_nif_is_valid(string? sut)
     {
         Assert.True(NifValidator.IsValidNif(sut));
-        return Task.CompletedTask;
     }
 
     [Theory]
     [MemberData(nameof(s_wrongNifData))]
-    public Task IsValidNif_should_returns_false_when_nif_is_wrong(string? sut)
+    public void IsValidNif_should_returns_false_when_nif_is_wrong(string? sut)
     {
         Assert.False(NifValidator.IsValidNif(sut));
-        return Task.CompletedTask;
     }
 }
