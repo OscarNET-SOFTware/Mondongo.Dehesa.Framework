@@ -211,6 +211,67 @@ public sealed class TemporaryFolderInfoTests
         sut.Delete(true);
     }
 
+    [Fact]
+    public void Can_enumerate_all_files_system_information()
+    {
+        var sut = new TemporaryFolderInfo();
+        FileInfo[] expectedFiles = CreateThreeTemporaryFiles(sut);
+
+        FileSystemInfo[] sutFiles = [.. sut.EnumerateFileSystemInfos().OrderBy(file => file.FullName)];
+
+        Assert.Equal(expectedFiles[0].FullName, sutFiles[0].FullName);
+        Assert.Equal(expectedFiles[1].FullName, sutFiles[1].FullName);
+        Assert.Equal(expectedFiles[2].FullName, sutFiles[2].FullName);
+
+        sut.Delete(true);
+    }
+
+    [Fact]
+    public void Can_enumerate_all_files_system_information_using_search_pattern()
+    {
+        var sut = new TemporaryFolderInfo();
+        FileInfo[] expectedFiles = CreateThreeTemporaryFiles(sut);
+
+        FileSystemInfo[] sutFiles = [.. sut.EnumerateFileSystemInfos("file*").OrderBy(file => file.FullName)];
+
+        Assert.Equal(expectedFiles[0].FullName, sutFiles[0].FullName);
+        Assert.Equal(expectedFiles[1].FullName, sutFiles[1].FullName);
+        Assert.Equal(expectedFiles[2].FullName, sutFiles[2].FullName);
+
+        sut.Delete(true);
+    }
+
+    [Fact]
+    public void Can_enumerate_all_files_system_information_using_search_pattern_and_enumeration_options()
+    {
+        var sut = new TemporaryFolderInfo();
+        FileInfo[] expectedFiles = CreateThreeTemporaryFiles(sut);
+
+        EnumerationOptions options = new() { MatchCasing = MatchCasing.PlatformDefault };
+        FileSystemInfo[] sutFiles = [.. sut.EnumerateFileSystemInfos("file*", options).OrderBy(file => file.FullName)];
+
+        Assert.Equal(expectedFiles[0].FullName, sutFiles[0].FullName);
+        Assert.Equal(expectedFiles[1].FullName, sutFiles[1].FullName);
+        Assert.Equal(expectedFiles[2].FullName, sutFiles[2].FullName);
+
+        sut.Delete(true);
+    }
+
+    [Fact]
+    public void Can_enumerate_all_files_system_information_using_search_pattern_and_search_option()
+    {
+        var sut = new TemporaryFolderInfo();
+        FileInfo[] expectedFiles = CreateThreeTemporaryFiles(sut);
+
+        FileSystemInfo[] sutFiles = [.. sut.EnumerateFileSystemInfos("file*", SearchOption.TopDirectoryOnly).OrderBy(file => file.FullName)];
+
+        Assert.Equal(expectedFiles[0].FullName, sutFiles[0].FullName);
+        Assert.Equal(expectedFiles[1].FullName, sutFiles[1].FullName);
+        Assert.Equal(expectedFiles[2].FullName, sutFiles[2].FullName);
+
+        sut.Delete(true);
+    }
+
     internal static DirectoryInfo[] CreateThreeTemporarySubfolders(TemporaryFolderInfo temporaryFolderInfo)
     {
         const int Total = 3;

@@ -137,6 +137,64 @@ public sealed class TemporaryFolderInfo : IEquatable<TemporaryFolderInfo>
         => _directoryInfo.EnumerateFiles(searchPattern, searchOption);
 
     /// <summary>
+    /// Lists the files system information that are inside this temporary folder.
+    /// </summary>
+    /// <returns>
+    /// An enumerable collection of <see cref="FileSystemInfo" /> that represents the list of files
+    /// system information inside.
+    /// </returns>
+    public IEnumerable<FileSystemInfo> EnumerateFileSystemInfos()
+        => _directoryInfo.EnumerateFileSystemInfos();
+
+    /// <summary>
+    /// Lists the files system information that are inside this temporary folder
+    ///  and that matches with a given search pattern.
+    /// </summary>
+    /// <param name="searchPattern">The search string to match against the names of folders.
+    /// This parameter can contain a combination of valid literal path and wildcard (* and ?) characters,
+    /// but it doesn't support regular expressions.</param>
+    /// <returns>
+    /// An enumerable collection of <see cref="FileSystemInfo" /> that represents the list of files
+    /// system information inside that matches the specified <paramref name="searchPattern" />.
+    /// </returns>
+    public IEnumerable<FileSystemInfo> EnumerateFileSystemInfos(string searchPattern)
+        => _directoryInfo.EnumerateFileSystemInfos(searchPattern);
+
+    /// <summary>
+    /// Lists the files system information that are inside this temporary folder
+    ///  and that matches with a given search pattern and enumeration options.
+    /// </summary>
+    /// <param name="searchPattern">The search string to match against the names of folders.
+    /// This parameter can contain a combination of valid literal path and wildcard (* and ?) characters,
+    /// but it doesn't support regular expressions.</param>
+    /// <param name="enumerationOptions">An object that describes the search and enumeration
+    /// configuration to use.</param>
+    /// <returns>
+    /// An enumerable collection of <see cref="FileSystemInfo" /> that represents the list of files
+    /// system information inside that matches the specified <paramref name="searchPattern" />
+    /// and <paramref name="enumerationOptions" />.
+    /// </returns>
+    public IEnumerable<FileSystemInfo> EnumerateFileSystemInfos(string searchPattern, EnumerationOptions enumerationOptions)
+        => _directoryInfo.EnumerateFileSystemInfos(searchPattern, enumerationOptions);
+
+    /// <summary>
+    /// Lists the files system information that are inside this temporary folder
+    ///  and that matches with a given search pattern and search subdirectory option.
+    /// </summary>
+    /// <param name="searchPattern">The search string to match against the names of folders.
+    /// This parameter can contain a combination of valid literal path and wildcard (* and ?) characters,
+    /// but it doesn't support regular expressions.</param>
+    /// <param name="searchOption">One of the enumeration values that specifies whether the search operation
+    /// should include only the current directory or all subdirectories.</param>
+    /// <returns>
+    /// An enumerable collection of <see cref="FileSystemInfo" /> that represents the list of files
+    /// system information inside that matches the specified <paramref name="searchPattern" />
+    /// and <paramref name="searchOption" />.
+    /// </returns>
+    public IEnumerable<FileSystemInfo> EnumerateFileSystemInfos(string searchPattern, SearchOption searchOption)
+        => _directoryInfo.EnumerateFileSystemInfos(searchPattern, searchOption);
+
+    /// <summary>
     /// Lists the folders that are inside this temporary folder.
     /// </summary>
     /// <returns>
