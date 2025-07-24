@@ -61,15 +61,6 @@ namespace Mondongo.Iberico.IO.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The specified path is not valid (&apos;{0}&apos;)..
-        /// </summary>
-        internal static string PathIsNotValid {
-            get {
-                return ResourceManager.GetString("PathIsNotValid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The temporary folder has already been deleted previously by another process or user..
         /// </summary>
         internal static string TemporaryDirectoryHasAlreadyBeenDeleted {

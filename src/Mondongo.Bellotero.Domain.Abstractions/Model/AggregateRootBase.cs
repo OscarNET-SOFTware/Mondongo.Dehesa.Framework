@@ -13,6 +13,7 @@
 // ---------------------------------------------------------------------------------------------------------------------
 
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 
 using Mondongo.Bellotero.Domain.Events;
 using Mondongo.Bellotero.Domain.Extensions;
@@ -43,6 +44,7 @@ public abstract class AggregateRootBase : AggregateRootBase<long>
     {
     }
 
+    [ExcludeFromCodeCoverage]
     private string DebuggerDisplay => IsTransient
         ? $"({this.GetUnproxiedType().Name}) => {nameof(IsTransient)} | {nameof(Version)} : {Version} | HashCode : {GetHashCode()}"
         : $"({this.GetUnproxiedType().Name}) => {nameof(Id)} : {Id} | {nameof(Version)} : {Version} | HashCode : {GetHashCode()}";

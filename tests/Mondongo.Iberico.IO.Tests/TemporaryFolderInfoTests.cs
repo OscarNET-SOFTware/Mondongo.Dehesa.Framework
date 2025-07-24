@@ -30,6 +30,17 @@ public sealed class TemporaryFolderInfoTests
     }
 
     [Fact]
+    public void Name_returns_expected_temporary_folder_name()
+    {
+        var sut = new TemporaryFolderInfo();
+        string expectedName = Path.GetFileName(sut.FullName);
+
+        Assert.Equal(expectedName, sut.Name);
+
+        sut.Delete();
+    }
+
+    [Fact]
     public void Two_temporary_folders_are_not_equal()
     {
         object sutA = new TemporaryFolderInfo();
@@ -200,7 +211,7 @@ public sealed class TemporaryFolderInfoTests
         sut.Delete(true);
     }
 
-    private static DirectoryInfo[] CreateThreeTemporarySubfolders(TemporaryFolderInfo temporaryFolderInfo)
+    internal static DirectoryInfo[] CreateThreeTemporarySubfolders(TemporaryFolderInfo temporaryFolderInfo)
     {
         const int Total = 3;
         var temporarySubfolders = new DirectoryInfo[Total];
@@ -213,7 +224,7 @@ public sealed class TemporaryFolderInfoTests
         return temporarySubfolders;
     }
 
-    private static FileInfo[] CreateThreeTemporaryFiles(TemporaryFolderInfo temporaryFolderInfo)
+    internal static FileInfo[] CreateThreeTemporaryFiles(TemporaryFolderInfo temporaryFolderInfo)
     {
         const int Total = 3;
         var temporaryFiles = new FileInfo[Total];

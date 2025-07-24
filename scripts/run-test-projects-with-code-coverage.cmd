@@ -38,17 +38,19 @@ echo TESTING THE FOLLOWING PROJECTS:
 echo.
 for /f "tokens=*" %%a in ('dir %_TestsDir%\*.tests.csproj /s /b /o:n /a-d') do (
     echo    [x]   %%~nxa
-    dotnet test %%a ^
-        --configuration %_DotNetConfiguration% ^
-        --collect "XPlat Code Coverage" ^
-        --framework %_DotNetFramework% ^
-        --results-directory %_TestsResultsOutputsDir% ^
-        --runtime %_DotNetRuntime% ^
-        --verbosity quiet ^
-        -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.DeterministicReport=true ^
-        -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.ExcludeByAttribute=Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute,DebuggerDisplayAttribute ^
-        -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura >nul
 )
+echo.
+dotnet test %_RepoDir%Mondongo.Dehesa.Framework.sln ^
+    --configuration %_DotNetConfiguration% ^
+    --collect "XPlat Code Coverage" ^
+    --framework %_DotNetFramework% ^
+    --results-directory %_TestsResultsOutputsDir% ^
+    --runtime %_DotNetRuntime% ^
+    --verbosity quiet ^
+    -- RunConfiguration.MaxCpuCount=0 ^
+    -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.DeterministicReport=true ^
+    -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.ExcludeByAttribute=CompilerGeneratedAttribute,ExcludeFromCodeCoverageAttribute,GeneratedCodeAttribute,Obsolete ^
+    -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura
 
 :GENERATE_CODE_COVERAGE_REPORT
 echo.

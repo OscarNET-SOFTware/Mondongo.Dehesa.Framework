@@ -13,6 +13,7 @@
 // ---------------------------------------------------------------------------------------------------------------------
 
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 
 using Mondongo.Bellotero.Domain.Extensions;
 
@@ -42,6 +43,7 @@ public abstract class EntityBase : EntityBase<long>
     {
     }
 
+    [ExcludeFromCodeCoverage]
     private string DebuggerDisplay => IsTransient
         ? $"({this.GetUnproxiedType().Name}) => {nameof(IsTransient)} | HashCode : {GetHashCode()}"
         : $"({this.GetUnproxiedType().Name}) => {nameof(Id)} : {Id} | HashCode : {GetHashCode()}";

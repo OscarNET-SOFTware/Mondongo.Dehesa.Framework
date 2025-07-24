@@ -12,6 +12,8 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Runtime.InteropServices;
 
@@ -20,6 +22,7 @@ namespace Mondongo.Iberico.IO;
 /// <summary>
 /// Represents the information of a temporary folder.
 /// </summary>
+[DebuggerDisplay("{DebuggerDisplay,nq}")]
 public sealed class TemporaryFolderInfo : IEquatable<TemporaryFolderInfo>
 {
     /// <summary>
@@ -40,21 +43,32 @@ public sealed class TemporaryFolderInfo : IEquatable<TemporaryFolderInfo>
         _directoryInfo = Directory.CreateDirectory(FindFreeTemporaryFolderName());
     }
 
+    [ExcludeFromCodeCoverage]
+    private string DebuggerDisplay => $"({nameof(TemporaryFolderInfo)}) => FullName : \"{FullName}\"";
+
     /// <summary>
-    /// Gets a value indicating whether the directory exists.
+    /// Gets a value indicating whether the folder exists.
     /// </summary>
     /// <value>
-    ///   <c>true</c> if the directory exists; otherwise, <c>false</c>.
+    ///   <c>true</c> if the folder exists; otherwise, <c>false</c>.
     /// </value>
     public bool Exists => _directoryInfo.Exists;
 
     /// <summary>
-    /// Gets the full path of the directory.
+    /// Gets the full path of the folder.
     /// </summary>
     /// <value>
     /// A <see cref="string" /> object containing the full path.
     /// </value>
     public string FullName => _directoryInfo.FullName;
+
+    /// <summary>
+    /// Gets the name of the folder.
+    /// </summary>
+    /// <value>
+    /// A <see cref="string" /> object containing the name.
+    /// </value>
+    public string Name => _directoryInfo.Name;
 
     /// <summary>
     /// Creates a subfolder or subfolders on the specified path.

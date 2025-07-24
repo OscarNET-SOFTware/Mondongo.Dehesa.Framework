@@ -13,6 +13,7 @@
 // ---------------------------------------------------------------------------------------------------------------------
 
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
 
@@ -40,6 +41,7 @@ public class TemporaryFolder : IDisposable
         FolderInfo = new TemporaryFolderInfo();
     }
 
+    [ExcludeFromCodeCoverage]
     private string DebuggerDisplay => $"({nameof(TemporaryFolder)}) => FullName : \"{FolderInfo.FullName}\"";
 
     /// <summary>
@@ -69,25 +71,6 @@ public class TemporaryFolder : IDisposable
     }
 
     /// <summary>
-    /// Combines the temporary folder full path with a given path.
-    /// </summary>
-    /// <param name="path">The path.</param>
-    /// <returns>
-    /// The combined full path.
-    /// </returns>
-    public virtual string Combine(string path)
-    {
-        if (!path.IsValidFullPath())
-        {
-            throw new ArgumentException(
-                message: IOResources.PathIsNotValid.FormatMessage(path),
-                paramName: nameof(path));
-        }
-
-        return Path.Combine(FolderInfo.FullName, path.Trim());
-    }
-
-    /// <summary>
     /// Creates a file in this temporary folder. If the file already exists, it will be overwritten.
     /// </summary>
     /// <param name="fileName">The optional file name. Default it's a random file name.</param>
@@ -99,8 +82,8 @@ public class TemporaryFolder : IDisposable
         EnsureHasNotBeenDisposedAndStillExists(IOResources.TemporaryFolderFileCouldNotBeCreate);
 
         string filePath = string.IsNullOrWhiteSpace(fileName)
-            ? Combine(Path.GetRandomFileName())
-            : Combine(fileName);
+            ? Path.Combine(FolderInfo.FullName, Path.GetRandomFileName())
+            : Path.Combine(FolderInfo.FullName, fileName);
 
         return new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.Read);
     }
@@ -120,8 +103,8 @@ public class TemporaryFolder : IDisposable
         Encoding fileEncoding = encoding ?? Encoding.UTF8;
 
         string filePath = string.IsNullOrWhiteSpace(fileName)
-            ? Combine(Path.GetRandomFileName())
-            : Combine(fileName);
+            ? Path.Combine(FolderInfo.FullName, Path.GetRandomFileName())
+            : Path.Combine(FolderInfo.FullName, fileName);
 
         return fileEncoding != Encoding.UTF8
             ? new StreamWriter(filePath, false, fileEncoding)
@@ -144,17 +127,15 @@ public class TemporaryFolder : IDisposable
     /// <c>false</c> to release only unmanaged resources.</param>
     protected virtual void Dispose(bool disposing)
     {
-        if (_isDisposed)
+        if (!_isDisposed)
         {
-            return;
-        }
+            if (disposing && FolderInfo.Exists)
+            {
+                FolderInfo.Delete(true);
+            }
 
-        if (disposing && FolderInfo.Exists)
-        {
-            FolderInfo.Delete(true);
+            _isDisposed = true;
         }
-
-        _isDisposed = true;
     }
 
     /// <summary>
