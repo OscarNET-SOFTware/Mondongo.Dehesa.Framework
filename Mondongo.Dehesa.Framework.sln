@@ -29,6 +29,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mondongo.Iberico.IO", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mondongo.Iberico.IO.Tests", "tests\Mondongo.Iberico.IO.Tests\Mondongo.Iberico.IO.Tests.csproj", "{F96E071F-F077-4A3D-9106-8CC1E79349F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mondongo.Bellotero.Domain.Dapper", "src\Mondongo.Bellotero.Domain.Dapper\Mondongo.Bellotero.Domain.Dapper.csproj", "{AEB1C2EA-5DAC-4B3C-9EFE-D3137F56EE84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mondongo.Bellotero.Domain.EntityFramework", "src\Mondongo.Bellotero.Domain.EntityFramework\Mondongo.Bellotero.Domain.EntityFramework.csproj", "{B2198311-A503-4BE9-9616-FF86CC748A41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mondongo.Bellotero.Domain.NHibernate", "src\Mondongo.Bellotero.Domain.NHibernate\Mondongo.Bellotero.Domain.NHibernate.csproj", "{0AD492CF-A0D0-4670-A79C-12F421B83269}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +85,18 @@ Global
 		{F96E071F-F077-4A3D-9106-8CC1E79349F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F96E071F-F077-4A3D-9106-8CC1E79349F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F96E071F-F077-4A3D-9106-8CC1E79349F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEB1C2EA-5DAC-4B3C-9EFE-D3137F56EE84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEB1C2EA-5DAC-4B3C-9EFE-D3137F56EE84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEB1C2EA-5DAC-4B3C-9EFE-D3137F56EE84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEB1C2EA-5DAC-4B3C-9EFE-D3137F56EE84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2198311-A503-4BE9-9616-FF86CC748A41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2198311-A503-4BE9-9616-FF86CC748A41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2198311-A503-4BE9-9616-FF86CC748A41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2198311-A503-4BE9-9616-FF86CC748A41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AD492CF-A0D0-4670-A79C-12F421B83269}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AD492CF-A0D0-4670-A79C-12F421B83269}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AD492CF-A0D0-4670-A79C-12F421B83269}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AD492CF-A0D0-4670-A79C-12F421B83269}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,6 +113,9 @@ Global
 		{37856D7C-0DD3-4327-BE0A-14219FE5E0C2} = {058084CC-41A7-4944-9466-A933DC174CBA}
 		{9105A915-C0FF-4F76-82A5-696941F4E73F} = {F9D50B39-7ECA-4D16-ADB1-0C0AC5EF6F40}
 		{F96E071F-F077-4A3D-9106-8CC1E79349F8} = {058084CC-41A7-4944-9466-A933DC174CBA}
+		{AEB1C2EA-5DAC-4B3C-9EFE-D3137F56EE84} = {F9D50B39-7ECA-4D16-ADB1-0C0AC5EF6F40}
+		{B2198311-A503-4BE9-9616-FF86CC748A41} = {F9D50B39-7ECA-4D16-ADB1-0C0AC5EF6F40}
+		{0AD492CF-A0D0-4670-A79C-12F421B83269} = {F9D50B39-7ECA-4D16-ADB1-0C0AC5EF6F40}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C858837A-6ECB-495B-857D-A30015A549A6}

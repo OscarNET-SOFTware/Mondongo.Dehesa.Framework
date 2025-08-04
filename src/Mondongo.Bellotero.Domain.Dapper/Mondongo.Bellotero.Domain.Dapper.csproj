@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyTitle>Dapper implementation for Domain-Driven Design. This library is part of Mondongo Dehesa Framework.</AssemblyTitle>
+    <Description>$(AssemblyTitle)</Description>
+    <PackageId>Mondongo.Bellotero.Domain.Dapper</PackageId>
+    <PackageTags>oscarnet mondongo dehesa framework bellotero domain dapper</PackageTags>
+    <RootNamespace>Mondongo.Bellotero.Domain</RootNamespace>
+    <Title>Mondongo Bellotero Domain Dapper (part of Mondongo Dehesa Framework)</Title>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper.SqlBuilder" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mondongo.Bellotero.Domain.Abstractions\Mondongo.Bellotero.Domain.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -17,7 +17,7 @@ using Mondongo.Bellotero.Domain.Model;
 namespace Mondongo.Bellotero.Domain.Repositories;
 
 /// <summary>
-/// Defines the contract for a Unit of Work that coordinates the work of multiple repositories 
+/// Defines the contract for a Unit of Work that coordinates the work of multiple repositories
 /// by managing atomic transactions across them.
 /// </summary>
 /// <remarks>
@@ -45,12 +45,16 @@ public interface IUnitOfWork : IDisposable
     /// <summary>
     /// Commits all changes made within the current unit of work as a single transaction.
     /// </summary>
+    /// <param name="cancellationToken">An optional token to cancel the asynchronous operation.
+    /// The default value is <see cref="CancellationToken.None" />.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    Task CommitAsync();
+    Task CommitAsync(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Rolls back all changes tracked by the current unit of work.
     /// </summary>
+    /// <param name="cancellationToken">An optional token to cancel the asynchronous operation.
+    /// The default value is <see cref="CancellationToken.None" />.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    Task RollbackAsync();
+    Task RollbackAsync(CancellationToken cancellationToken = default);
 }

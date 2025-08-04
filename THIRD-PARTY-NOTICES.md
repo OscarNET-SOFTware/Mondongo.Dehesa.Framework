@@ -28,6 +28,22 @@ This project uses third-party components. Their licenses are included in the [li
   - Copyright (c) 2015 Vladimir Khorikov.  
     See [licenses/mit.txt](./licenses/mit.txt) for the full text.
 
++ **Dapper** ([Apache License, Version 2.0](https://github.com/DapperLib/Dapper/blob/main/License.txt))  
+  - Copyright (c) 2019 Stack Exchange, Inc.  
+    See [licenses/apache-2.0.txt](./licenses/apache-2.0.txt) for the full text.
+
++ **Entity Framework Core** ([MIT License](https://github.com/dotnet/efcore/blob/main/LICENSE.txt))  
+  - Copyright (c) .NET Foundation and Contributors.  
+    See [licenses/mit.txt](./licenses/mit.txt) for the full text.
+
++ **FluentNHibernate** ([BSD 3-Clause License](https://github.com/nhibernate/fluent-nhibernate/blob/main/LICENSE))  
+  - Copyright (c) 2008-2018, James Gregory and contributors.  
+    See [licenses/bsd-3.txt](./licenses/bsd-3.txt) for the full text.
+
++ **NHibernate** ([GNU LESSER GENERAL PUBLIC LICENSE, Version 2.1](https://github.com/nhibernate/nhibernate-core/blob/master/LICENSE.txt))  
+  - Copyright (c) NHibernate community, Hibernate community.  
+    See [licenses/lgpl-2.1.txt](./licenses/lgpl-2.1.txt) for the full text.
+
 + **ReportGenerator** ([Apache License, Version 2.0](https://github.com/danielpalme/ReportGenerator/blob/main/LICENSE.txt))  
   - Copyright (c) Daniel Palme.  
     See [licenses/apache-2.0.txt](./licenses/apache-2.0.txt) for the full text.

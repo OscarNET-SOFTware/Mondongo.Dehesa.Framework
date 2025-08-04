@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyTitle>Entity Framework implementation for Domain-Driven Design. This library is part of Mondongo Dehesa Framework.</AssemblyTitle>
+    <Description>$(AssemblyTitle)</Description>
+    <PackageId>Mondongo.Bellotero.Domain.EntityFramework</PackageId>
+    <PackageTags>oscarnet mondongo dehesa framework bellotero domain ef</PackageTags>
+    <RootNamespace>Mondongo.Bellotero.Domain</RootNamespace>
+    <Title>Mondongo Bellotero Domain Entity Framework (part of Mondongo Dehesa Framework)</Title>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mondongo.Bellotero.Domain.Abstractions\Mondongo.Bellotero.Domain.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>
