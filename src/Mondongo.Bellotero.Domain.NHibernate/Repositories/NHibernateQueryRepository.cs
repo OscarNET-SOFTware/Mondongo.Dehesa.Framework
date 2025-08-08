@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="IQueryRepository.cs" company="OscarNET-SOFTware">
+// <copyright file="NHibernateQueryRepository.cs" company="OscarNET-SOFTware">
 // ···
 //      Mondongo.Dehesa.Framework - Just a set of essential libraries for DotNET: clean, simple and ready to use.
 // ···
@@ -12,18 +12,37 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
+using CSharpFunctionalExtensions;
+
 using Mondongo.Bellotero.Domain.Model;
 using Mondongo.Bellotero.Domain.Specifications;
+
+using NHibernate;
 
 namespace Mondongo.Bellotero.Domain.Repositories;
 
 /// <summary>
-/// Defines the contract for query operations (read-only) on an aggregate root entity.
+/// Provides NHibernate's repository implementation for query operations (read-only) on an aggregate root entity.
 /// </summary>
 /// <typeparam name="TAggregateRoot">The aggregate root type.</typeparam>
-public interface IQueryRepository<TAggregateRoot>
+public class NHibernateQueryRepository<TAggregateRoot> : IQueryRepository<TAggregateRoot>
     where TAggregateRoot : class, IAggregateRoot
 {
+    /// <summary>
+    /// Stores the session.
+    /// </summary>
+    protected readonly ISession Session;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NHibernateQueryRepository{TAggregateRoot}" /> class.
+    /// </summary>
+    /// <param name="session">The session.</param>
+    public NHibernateQueryRepository(ISession session)
+    {
+        ArgumentNullException.ThrowIfNull(session, nameof(session));
+        Session = session;
+    }
+
     /// <summary>
     /// Asynchronously checks whether one or more entities match a given criteria.
     /// </summary>
@@ -33,7 +52,8 @@ public interface IQueryRepository<TAggregateRoot>
     /// A task that represents the asynchronous check operation.
     /// Its result contains a <c>true</c> value if one or more entities meet the specified criteria.
     /// </returns>
-    Task<bool> AnyAsync(ISpecification<TAggregateRoot> specification, CancellationToken cancellationToken = default);
+    public Task<bool> AnyAsync(ISpecification<TAggregateRoot> specification, CancellationToken cancellationToken = default)
+        => throw new NotImplementedException();
 
     /// <summary>
     /// Asynchronously counts the entities.
@@ -43,7 +63,8 @@ public interface IQueryRepository<TAggregateRoot>
     /// A task that represents the asynchronous counting operation.
     /// Its result contains the total number of entities.
     /// </returns>
-    Task<long> CountAsync(CancellationToken cancellationToken = default);
+    public Task<long> CountAsync(CancellationToken cancellationToken = default)
+        => throw new NotImplementedException();
 
     /// <summary>
     /// Asynchronously counts the entities that match a given specification.
@@ -54,7 +75,8 @@ public interface IQueryRepository<TAggregateRoot>
     /// A task that represents the asynchronous counting operation.
     /// Its result contains the total number of entities that meet the specified specification.
     /// </returns>
-    Task<long> CountAsync(ISpecification<TAggregateRoot> specification, CancellationToken cancellationToken = default);
+    public Task<long> CountAsync(ISpecification<TAggregateRoot> specification, CancellationToken cancellationToken = default)
+        => throw new NotImplementedException();
 
     /// <summary>
     /// Asynchronously checks if exists a given entity.
@@ -65,7 +87,8 @@ public interface IQueryRepository<TAggregateRoot>
     /// A task that represents the asynchronous check operation.
     /// Its result contains a <c>true</c> value if the entity exists; otherwise, <c>false</c>.
     /// </returns>
-    Task<bool> ExistsAsync(object entityId, CancellationToken cancellationToken = default);
+    public Task<bool> ExistsAsync(object entityId, CancellationToken cancellationToken = default)
+        => throw new NotImplementedException();
 
     /// <summary>
     /// Asynchronously retrieves the first entity that matches a given criteria.
@@ -76,8 +99,9 @@ public interface IQueryRepository<TAggregateRoot>
     /// A task that represents the asynchronous query operation.
     /// Its result contains the first entity found, if it meets the specified criteria.
     /// </returns>
-    Task<Maybe<TAggregateRoot>> FirstAsync(ISpecification<TAggregateRoot> specification,
-                                           CancellationToken cancellationToken = default);
+    public Task<Maybe<TAggregateRoot>> FirstAsync(ISpecification<TAggregateRoot> specification,
+                                                  CancellationToken cancellationToken = default)
+        => throw new NotImplementedException();
 
     /// <summary>
     /// Asynchronously retrieves all entities that match a given criteria.
@@ -88,8 +112,9 @@ public interface IQueryRepository<TAggregateRoot>
     /// A task that represents the asynchronous query operation.
     /// Its result contains a sequence of entities that meet the specified criteria.
     /// </returns>
-    Task<IEnumerable<TAggregateRoot>> GetAllAsync(ISpecification<TAggregateRoot> specification,
-                                                  CancellationToken cancellationToken = default);
+    public Task<IEnumerable<TAggregateRoot>> GetAllAsync(ISpecification<TAggregateRoot> specification,
+                                             CancellationToken cancellationToken = default)
+        => throw new NotImplementedException();
 
     /// <summary>
     /// Asynchronously retrieves an entity by its identifier.
@@ -100,7 +125,11 @@ public interface IQueryRepository<TAggregateRoot>
     /// A task that represents the asynchronous query operation.
     /// Its result contains the found entity, if one exists.
     /// </returns>
-    Task<Maybe<TAggregateRoot>> GetByIdAsync(object entityId, CancellationToken cancellationToken = default);
+    public async Task<Maybe<TAggregateRoot>> GetByIdAsync(object entityId, CancellationToken cancellationToken = default)
+    {
+        Maybe<TAggregateRoot> maybeEntity = await Session.GetAsync<TAggregateRoot>(entityId, cancellationToken);
+        return maybeEntity;
+    }
 
     /// <summary>
     /// Finds the entities that match a given criteria.
@@ -110,8 +139,9 @@ public interface IQueryRepository<TAggregateRoot>
     /// <returns>
     /// A paged collection containing the entities that match the specified criteria.
     /// </returns>
-    Task<PagedCollection<TAggregateRoot>> GetPagedAsync(QueryConstraint<TAggregateRoot> queryConstraint,
-                                                        CancellationToken cancellationToken = default);
+    public Task<PagedCollection<TAggregateRoot>> GetPagedAsync(QueryConstraint<TAggregateRoot> queryConstraint,
+                                                               CancellationToken cancellationToken = default)
+        => throw new NotImplementedException();
 
     /// <summary>
     /// Asynchronously retrieves the unique entity that matches a given criteria.
@@ -122,6 +152,7 @@ public interface IQueryRepository<TAggregateRoot>
     /// A task that represents the asynchronous query operation.
     /// Its result contains the unique entity found, if it meets the specified criteria.
     /// </returns>
-    Task<Maybe<TAggregateRoot>> SingleAsync(ISpecification<TAggregateRoot> specification,
-                                           CancellationToken cancellationToken = default);
+    public Task<Maybe<TAggregateRoot>> SingleAsync(ISpecification<TAggregateRoot> specification,
+                                                   CancellationToken cancellationToken = default)
+        => throw new NotImplementedException();
 }

@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="ICommandRepository.cs" company="OscarNET-SOFTware">
+// <copyright file="DapperCommandRepository.cs" company="OscarNET-SOFTware">
 // ···
 //      Mondongo.Dehesa.Framework - Just a set of essential libraries for DotNET: clean, simple and ready to use.
 // ···
@@ -12,17 +12,41 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
+using System.Data.Common;
+
 using Mondongo.Bellotero.Domain.Model;
 
 namespace Mondongo.Bellotero.Domain.Repositories;
 
 /// <summary>
-/// Defines the contract for command operations (write) on an aggregate root entity.
+/// Provides Dapper's repository implementation for command operations (write) on an aggregate root entity.
 /// </summary>
 /// <typeparam name="TAggregateRoot">The aggregate root type.</typeparam>
-public interface ICommandRepository<TAggregateRoot>
+public class DapperCommandRepository<TAggregateRoot> : ICommandRepository<TAggregateRoot>
     where TAggregateRoot : class, IAggregateRoot
 {
+    /// <summary>
+    /// Stores the connection.
+    /// </summary>
+    protected readonly DbConnection Connection;
+
+    /// <summary>
+    /// Stores the transaction.
+    /// </summary>
+    protected readonly DbTransaction? Transaction;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DapperCommandRepository{TAggregateRoot}" /> class.
+    /// </summary>
+    /// <param name="connection">The connection.</param>
+    /// <param name="transaction">The transaction.</param>
+    public DapperCommandRepository(DbConnection connection, DbTransaction? transaction)
+    {
+        ArgumentNullException.ThrowIfNull(connection, nameof(connection));
+        Connection = connection;
+        Transaction = transaction;
+    }
+
     /// <summary>
     /// Asynchronously adds an entity.
     /// </summary>
@@ -31,7 +55,8 @@ public interface ICommandRepository<TAggregateRoot>
     /// <returns>
     /// A task that represents the asynchronous add operation.
     /// </returns>
-    Task AddAsync(TAggregateRoot entity, CancellationToken cancellationToken = default);
+    public Task AddAsync(TAggregateRoot entity, CancellationToken cancellationToken = default)
+        => throw new NotImplementedException();
 
     /// <summary>
     /// Asynchronously deletes an entity.
@@ -41,7 +66,8 @@ public interface ICommandRepository<TAggregateRoot>
     /// <returns>
     /// A task that represents the asynchronous delete operation.
     /// </returns>
-    Task DeleteAsync(TAggregateRoot entity, CancellationToken cancellationToken = default);
+    public Task DeleteAsync(TAggregateRoot entity, CancellationToken cancellationToken = default)
+        => throw new NotImplementedException();
 
     /// <summary>
     /// Asynchronously updates an entity.
@@ -51,5 +77,5 @@ public interface ICommandRepository<TAggregateRoot>
     /// <returns>
     /// A task that represents the asynchronous update operation.
     /// </returns>
-    Task UpdateAsync(TAggregateRoot entity, CancellationToken cancellationToken = default);
+    public Task UpdateAsync(TAggregateRoot entity, CancellationToken cancellationToken = default) => throw new NotImplementedException();
 }

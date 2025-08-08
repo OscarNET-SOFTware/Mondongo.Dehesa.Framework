@@ -32,7 +32,7 @@ public interface IUnitOfWork : IDisposable
     /// <typeparam name="TAggregateRoot">The entity type.</typeparam>
     /// <returns>An <see cref="IQueryRepository{TAggregateRoot}"/> for querying entities.</returns>
     IQueryRepository<TAggregateRoot> QueryRepository<TAggregateRoot>()
-        where TAggregateRoot : IAggregateRoot;
+        where TAggregateRoot : class, IAggregateRoot;
 
     /// <summary>
     /// Gets a command repository for write operations (create, update, delete) on the specified entity type.
@@ -40,7 +40,18 @@ public interface IUnitOfWork : IDisposable
     /// <typeparam name="TAggregateRoot">The entity type.</typeparam>
     /// <returns>An <see cref="ICommandRepository{TAggregateRoot}"/> for modifying entities.</returns>
     ICommandRepository<TAggregateRoot> CommandRepository<TAggregateRoot>()
-        where TAggregateRoot : IAggregateRoot;
+        where TAggregateRoot : class, IAggregateRoot;
+
+    /// <summary>
+    /// Asynchronously opens the database connection (if not already open) and
+    /// begins a new transaction for the current unit of work.
+    /// </summary>
+    /// <param name="cancellationToken">An optional token to cancel the asynchronous operation.
+    /// The default value is <see cref="CancellationToken.None" />.</param>
+    /// <returns>
+    /// A task that represents the asynchronous operation of starting the transaction.
+    /// </returns>
+    Task BeginTransactionAsync(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Commits all changes made within the current unit of work as a single transaction.

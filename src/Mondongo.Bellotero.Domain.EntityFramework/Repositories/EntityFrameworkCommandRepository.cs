@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="ICommandRepository.cs" company="OscarNET-SOFTware">
+// <copyright file="EntityFrameworkCommandRepository.cs" company="OscarNET-SOFTware">
 // ···
 //      Mondongo.Dehesa.Framework - Just a set of essential libraries for DotNET: clean, simple and ready to use.
 // ···
@@ -12,17 +12,34 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
+using Microsoft.EntityFrameworkCore;
+
 using Mondongo.Bellotero.Domain.Model;
 
 namespace Mondongo.Bellotero.Domain.Repositories;
 
 /// <summary>
-/// Defines the contract for command operations (write) on an aggregate root entity.
+/// Provides EntityFramework's repository implementation for command operations (write) on an aggregate root entity.
 /// </summary>
 /// <typeparam name="TAggregateRoot">The aggregate root type.</typeparam>
-public interface ICommandRepository<TAggregateRoot>
+public class EntityFrameworkCommandRepository<TAggregateRoot> : ICommandRepository<TAggregateRoot>
     where TAggregateRoot : class, IAggregateRoot
 {
+    /// <summary>
+    /// Stores the context.
+    /// </summary>
+    protected readonly DbContext Context;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="EntityFrameworkCommandRepository{TAggregateRoot}" /> class.
+    /// </summary>
+    /// <param name="context">The context.</param>
+    public EntityFrameworkCommandRepository(DbContext context)
+    {
+        ArgumentNullException.ThrowIfNull(context, nameof(context));
+        Context = context;
+    }
+
     /// <summary>
     /// Asynchronously adds an entity.
     /// </summary>
@@ -31,7 +48,11 @@ public interface ICommandRepository<TAggregateRoot>
     /// <returns>
     /// A task that represents the asynchronous add operation.
     /// </returns>
-    Task AddAsync(TAggregateRoot entity, CancellationToken cancellationToken = default);
+    public Task AddAsync(TAggregateRoot entity, CancellationToken cancellationToken = default)
+    {
+        Context.Set<TAggregateRoot>().Add(entity);
+        return Task.CompletedTask;
+    }
 
     /// <summary>
     /// Asynchronously deletes an entity.
@@ -41,7 +62,11 @@ public interface ICommandRepository<TAggregateRoot>
     /// <returns>
     /// A task that represents the asynchronous delete operation.
     /// </returns>
-    Task DeleteAsync(TAggregateRoot entity, CancellationToken cancellationToken = default);
+    public Task DeleteAsync(TAggregateRoot entity, CancellationToken cancellationToken = default)
+    {
+        Context.Set<TAggregateRoot>().Remove(entity);
+        return Task.CompletedTask;
+    }
 
     /// <summary>
     /// Asynchronously updates an entity.
@@ -51,5 +76,9 @@ public interface ICommandRepository<TAggregateRoot>
     /// <returns>
     /// A task that represents the asynchronous update operation.
     /// </returns>
-    Task UpdateAsync(TAggregateRoot entity, CancellationToken cancellationToken = default);
+    public Task UpdateAsync(TAggregateRoot entity, CancellationToken cancellationToken = default)
+    {
+        Context.Set<TAggregateRoot>().Update(entity);
+        return Task.CompletedTask;
+    }
 }

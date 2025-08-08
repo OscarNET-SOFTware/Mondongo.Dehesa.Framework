@@ -27,12 +27,22 @@ namespace Mondongo.Bellotero.Domain.Repositories;
 /// The Unit of Work pattern ensures that changes across repositories are committed as a single transaction,
 /// maintaining consistency and simplifying transaction management.
 /// </remarks>
-public sealed class DapperUnitOfWork : IUnitOfWork
+public sealed class DapperUnitOfWork : IDapperUnitOfWork
 {
     /// <summary>
     /// Stores the database connection.
     /// </summary>
     private readonly DbConnection _connection;
+
+    /// <summary>
+    /// Stores the factories of the custom query repositories.
+    /// </summary>
+    private readonly Dictionary<Type, Func<DbConnection, DbTransaction?, object>> _queryRepoFactories = [];
+
+    /// <summary>
+    /// Stores the factories of the custom command repositories.
+    /// </summary>
+    private readonly Dictionary<Type, Func<DbConnection, DbTransaction?, object>> _commandRepoFactories = [];
 
     /// <summary>
     /// Stores the database transaction.
@@ -51,14 +61,7 @@ public sealed class DapperUnitOfWork : IUnitOfWork
     public DapperUnitOfWork(DbConnection connection)
     {
         ArgumentNullException.ThrowIfNull(connection, nameof(connection));
-
         _connection = connection;
-        if (_connection.State != ConnectionState.Open)
-        {
-            _connection.Open();
-        }
-
-        _transaction = _connection.BeginTransaction();
     }
 
     /// <summary>
@@ -67,7 +70,8 @@ public sealed class DapperUnitOfWork : IUnitOfWork
     /// <typeparam name="TAggregateRoot">The entity type.</typeparam>
     /// <returns>An <see cref="IQueryRepository{TAggregateRoot}"/> for querying entities.</returns>
     public IQueryRepository<TAggregateRoot> QueryRepository<TAggregateRoot>()
-        where TAggregateRoot : IAggregateRoot => throw new NotImplementedException();
+        where TAggregateRoot : class, IAggregateRoot
+        => (IQueryRepository<TAggregateRoot>)GetOrCreateQueryRepository<TAggregateRoot>();
 
     /// <summary>
     /// Gets a command repository for write operations (create, update, delete) on the specified entity type.
@@ -75,7 +79,51 @@ public sealed class DapperUnitOfWork : IUnitOfWork
     /// <typeparam name="TAggregateRoot">The entity type.</typeparam>
     /// <returns>An <see cref="ICommandRepository{TAggregateRoot}"/> for modifying entities.</returns>
     public ICommandRepository<TAggregateRoot> CommandRepository<TAggregateRoot>()
-        where TAggregateRoot : IAggregateRoot => throw new NotImplementedException();
+        where TAggregateRoot : class, IAggregateRoot
+        => (ICommandRepository<TAggregateRoot>)GetOrCreateCommandRepository<TAggregateRoot>();
+
+    /// <summary>
+    /// Registers a custom query repository implementation for the specified entity type.
+    /// </summary>
+    /// <typeparam name="TAggregateRoot">The entity type.</typeparam>
+    /// <typeparam name="TRepository">Repository implementation type.</typeparam>
+    /// <param name="factory">Factory function that receives the managed connection and transaction
+    /// and produces a query repository instance.</param>
+    public void RegisterQueryRepository<TAggregateRoot, TRepository>(Func<DbConnection, DbTransaction?, TRepository> factory)
+        where TRepository : class, IQueryRepository<TAggregateRoot>
+        where TAggregateRoot : class, IAggregateRoot
+        => _queryRepoFactories[typeof(TAggregateRoot)] = (connection, transaction) => factory(connection, transaction);
+
+    /// <summary>
+    /// Registers a custom command repository implementation for the specified entity type.
+    /// </summary>
+    /// <typeparam name="TAggregateRoot">The entity type.</typeparam>
+    /// <typeparam name="TRepository">Repository implementation type.</typeparam>
+    /// <param name="factory">Factory function that receives the managed connection and transaction
+    /// and produces a command repository instance.</param>
+    public void RegisterCommandRepository<TAggregateRoot, TRepository>(Func<DbConnection, DbTransaction?, TRepository> factory)
+        where TRepository : class, ICommandRepository<TAggregateRoot>
+        where TAggregateRoot : class, IAggregateRoot
+        => _commandRepoFactories[typeof(TAggregateRoot)] = (connection, transaction) => factory(connection, transaction);
+
+    /// <summary>
+    /// Asynchronously opens the database connection (if not already open) and
+    /// begins a new transaction for the current unit of work.
+    /// </summary>
+    /// <param name="cancellationToken">An optional token to cancel the asynchronous operation.
+    /// The default value is <see cref="CancellationToken.None" />.</param>
+    /// <returns>
+    /// A task that represents the asynchronous operation of starting the transaction.
+    /// </returns>
+    public async Task BeginTransactionAsync(CancellationToken cancellationToken = default)
+    {
+        if (_connection.State != ConnectionState.Open)
+        {
+            await _connection.OpenAsync(cancellationToken);
+        }
+
+        _transaction = await _connection.BeginTransactionAsync(cancellationToken);
+    }
 
     /// <summary>
     /// Commits all changes made within the current unit of work as a single transaction.
@@ -91,8 +139,8 @@ public sealed class DapperUnitOfWork : IUnitOfWork
         }
 
         await _transaction.CommitAsync(cancellationToken);
-        await _connection.CloseAsync();
         await _transaction.DisposeAsync();
+        await _connection.CloseAsync();
         _transaction = null;
     }
 
@@ -110,8 +158,8 @@ public sealed class DapperUnitOfWork : IUnitOfWork
         }
 
         await _transaction.RollbackAsync(cancellationToken);
-        await _connection.CloseAsync();
         await _transaction.DisposeAsync();
+        await _connection.CloseAsync();
         _transaction = null;
     }
 
@@ -146,5 +194,45 @@ public sealed class DapperUnitOfWork : IUnitOfWork
 
             _isDisposed = true;
         }
+    }
+
+    /// <summary>
+    /// Retrieves or creates the query repository instance for the specified entity type.
+    /// If a custom query repository factory has been registered, it will be used;
+    /// otherwise, a generic query repository is created.
+    /// </summary>
+    private object GetOrCreateQueryRepository<TAggregateRoot>()
+        where TAggregateRoot : class, IAggregateRoot
+    {
+        Type aggregateRootType = typeof(TAggregateRoot);
+        if (_queryRepoFactories.TryGetValue(aggregateRootType, out Func<DbConnection, DbTransaction?, object>? factory))
+        {
+            return factory(_connection, _transaction);
+        }
+
+        return Activator.CreateInstance(
+            type: typeof(DapperQueryRepository<>).MakeGenericType(aggregateRootType),
+            args: [_connection, _transaction]
+        )!;
+    }
+
+    /// <summary>
+    /// Retrieves or creates the command repository instance for the specified entity type.
+    /// If a custom command repository factory has been registered, it will be used;
+    /// otherwise, a generic command repository is created.
+    /// </summary>
+    private object GetOrCreateCommandRepository<TAggregateRoot>()
+        where TAggregateRoot : class, IAggregateRoot
+    {
+        Type aggregateRootType = typeof(TAggregateRoot);
+        if (_commandRepoFactories.TryGetValue(aggregateRootType, out Func<DbConnection, DbTransaction?, object>? factory))
+        {
+            return factory(_connection, _transaction);
+        }
+
+        return Activator.CreateInstance(
+            type: typeof(DapperCommandRepository<>).MakeGenericType(aggregateRootType),
+            args: [_connection, _transaction]
+        )!;
     }
 }
