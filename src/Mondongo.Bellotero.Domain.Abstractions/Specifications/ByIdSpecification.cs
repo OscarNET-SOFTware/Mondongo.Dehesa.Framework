@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="NotSpecification.cs" company="OscarNET-SOFTware">
+// <copyright file="ByIdSpecification.cs" company="OscarNET-SOFTware">
 // ···
 //      Mondongo.Dehesa.Framework - Just a set of essential libraries for DotNET: clean, simple and ready to use.
 // ···
@@ -12,7 +12,6 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 
 using Mondongo.Bellotero.Domain.Model;
@@ -20,20 +19,20 @@ using Mondongo.Bellotero.Domain.Model;
 namespace Mondongo.Bellotero.Domain.Specifications;
 
 /// <summary>
-/// Specification that represents a conditional NOT operation.
+/// Initializes a new instance of the <see cref="ByIdSpecification{TEntity}" /> class.
 /// </summary>
+/// <param name="entityId">The entity identifier.</param>
 /// <typeparam name="TEntity">The entity type.</typeparam>
-/// <param name="specification">The specification.</param>
-public sealed class NotSpecification<TEntity>(ISpecification<TEntity> specification) : SpecificationBase<TEntity>
+public sealed class ByIdSpecification<TEntity>(object entityId) : SpecificationBase<TEntity>()
     where TEntity : IEntity
 {
     /// <summary>
-    /// Gets the inner specification.
+    /// Gets the entity identifier.
     /// </summary>
     /// <value>
-    /// The inner <see cref="ISpecification{TEntity}" />.
+    /// An <see cref="object" /> that represents the entity identifier.
     /// </value>
-    public ISpecification<TEntity> InnerSpecification { get; } = specification;
+    public object EntityId { get; } = entityId ?? throw new ArgumentNullException(nameof(entityId));
 
     /// <summary>
     /// Converts this specification to an expression.
@@ -43,20 +42,12 @@ public sealed class NotSpecification<TEntity>(ISpecification<TEntity> specificat
     /// </returns>
     public override Expression<Func<TEntity, bool>> ToExpression()
     {
-        var expression = InnerSpecification.ToExpression();
+        ParameterExpression parameterExpression = Expression.Parameter(typeof(TEntity), "entity");
+        MemberExpression idProperty = Expression.PropertyOrField(parameterExpression, nameof(IEntity.Id));
+        Type idType = idProperty.Type;
+        ConstantExpression idConstant = Expression.Constant(Convert.ChangeType(EntityId, idType), idType);
 
-        ParameterExpression parameterExpression = Expression.Parameter(typeof(TEntity));
-        UnaryExpression body = Expression.Not(Expression.Invoke(expression, parameterExpression));
-
-        return Expression.Lambda<Func<TEntity, bool>>(body, parameterExpression);
+        BinaryExpression equal = Expression.Equal(idProperty, idConstant);
+        return Expression.Lambda<Func<TEntity, bool>>(equal, parameterExpression);
     }
-
-    /// <summary>
-    /// Returns a textual representation of this specification.
-    /// </summary>
-    /// <returns>
-    /// A <see cref="string" /> object containing the textual representation of this specification.
-    /// </returns>
-    [ExcludeFromCodeCoverage]
-    public override string ToString() => $"NOT ( {InnerSpecification} ) ";
 }

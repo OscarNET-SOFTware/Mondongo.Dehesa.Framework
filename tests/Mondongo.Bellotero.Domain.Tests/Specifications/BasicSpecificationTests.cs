@@ -113,4 +113,14 @@ public sealed class BasicSpecificationTests
 
         Assert.True(sut.IsSatisfiedBy(order));
     }
+
+    [Fact]
+    public void ByIdSpecification_should_return_true_when_identifier_matches()
+    {
+        var order = new Order(1L, DateTime.Today);
+
+        var sut = new ByIdSpecification<Order>(1L);
+
+        Assert.True(sut.IsSatisfiedBy(order));
+    }
 }

@@ -13,6 +13,9 @@
 // ---------------------------------------------------------------------------------------------------------------------
 
 using System.Data.Common;
+using System.Reflection;
+
+using Dapper;
 
 using Mondongo.Bellotero.Domain.Model;
 
@@ -55,8 +58,21 @@ public class DapperCommandRepository<TAggregateRoot> : ICommandRepository<TAggre
     /// <returns>
     /// A task that represents the asynchronous add operation.
     /// </returns>
-    public Task AddAsync(TAggregateRoot entity, CancellationToken cancellationToken = default)
-        => throw new NotImplementedException();
+    public async Task AddAsync(TAggregateRoot entity, CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(entity, nameof(entity));
+
+        string tableName = GetTableName();
+        IEnumerable<PropertyInfo> properties = GetEntityProperties(excludeId: true);
+
+        string columns = string.Join(", ", properties.Select(property => property.Name));
+        string parameters = string.Join(", ", properties.Select(property => "@" + property.Name));
+
+        string sql = $"INSERT INTO {tableName} ({columns}) VALUES ({parameters})";
+        CommandDefinition commandDefinition = new(sql, entity, cancellationToken: cancellationToken);
+
+        await Connection.ExecuteAsync(commandDefinition);
+    }
 
     /// <summary>
     /// Asynchronously deletes an entity.
@@ -66,8 +82,19 @@ public class DapperCommandRepository<TAggregateRoot> : ICommandRepository<TAggre
     /// <returns>
     /// A task that represents the asynchronous delete operation.
     /// </returns>
-    public Task DeleteAsync(TAggregateRoot entity, CancellationToken cancellationToken = default)
-        => throw new NotImplementedException();
+    public async Task DeleteAsync(TAggregateRoot entity, CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(entity, nameof(entity));
+
+        string tableName = GetTableName();
+        string sql = $"DELETE FROM {tableName} WHERE Id = @Id";
+
+        var parameters = new DynamicParameters();
+        parameters.Add("Id", entity.Id);
+
+        CommandDefinition commandDefinition = new(sql, parameters, cancellationToken: cancellationToken);
+        await Connection.ExecuteAsync(commandDefinition);
+    }
 
     /// <summary>
     /// Asynchronously updates an entity.
@@ -77,5 +104,38 @@ public class DapperCommandRepository<TAggregateRoot> : ICommandRepository<TAggre
     /// <returns>
     /// A task that represents the asynchronous update operation.
     /// </returns>
-    public Task UpdateAsync(TAggregateRoot entity, CancellationToken cancellationToken = default) => throw new NotImplementedException();
+    public async Task UpdateAsync(TAggregateRoot entity, CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(entity, nameof(entity));
+
+        string tableName = GetTableName();
+        IEnumerable<PropertyInfo> properties = GetEntityProperties(excludeId: true);
+
+        string setClause = string.Join(", ", properties.Select(property => $"{property.Name} = @{property.Name}"));
+        string sql = $"UPDATE {tableName} SET {setClause} WHERE Id = @Id";
+
+        CommandDefinition commandDefinition = new(sql, entity, cancellationToken: cancellationToken);
+        await Connection.ExecuteAsync(commandDefinition);
+    }
+
+    /// <summary>
+    /// Gets the list of insertable properties for the aggregate root.
+    /// Excludes read-only properties, navigation properties, and optionally the Id.
+    /// </summary>
+    /// <param name="excludeId">If true, the Id property will be excluded from the result.</param>
+    /// <returns>A list of <see cref="PropertyInfo"/> representing the insertable columns.</returns>
+    private static List<PropertyInfo> GetEntityProperties(bool excludeId = true)
+        => [.. typeof(TAggregateRoot)
+            .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+            .Where(p => p.CanRead && p.CanWrite)
+            .Where(p => p.PropertyType.IsValueType || p.PropertyType == typeof(string))
+            .Where(p => !excludeId || !string.Equals(p.Name, "Id", StringComparison.OrdinalIgnoreCase))];
+
+    /// <summary>
+    /// Gets the table name (basic convention :)
+    /// </summary>
+    /// <returns>
+    /// A <see cref="string" /> instance that contains the table name.
+    /// </returns>
+    private static string GetTableName() => typeof(TAggregateRoot).Name;
 }

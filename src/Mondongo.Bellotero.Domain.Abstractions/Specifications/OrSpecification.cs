@@ -26,18 +26,24 @@ namespace Mondongo.Bellotero.Domain.Specifications;
 /// <typeparam name="TEntity">The entity type.</typeparam>
 /// <param name="left">The left specification.</param>
 /// <param name="right">The right specification.</param>
-internal sealed class OrSpecification<TEntity>(ISpecification<TEntity> left, ISpecification<TEntity> right) : SpecificationBase<TEntity>
+public sealed class OrSpecification<TEntity>(ISpecification<TEntity> left, ISpecification<TEntity> right) : SpecificationBase<TEntity>
     where TEntity : IEntity
 {
     /// <summary>
-    /// Stores the left specification.
+    /// Gets the left specification.
     /// </summary>
-    private readonly ISpecification<TEntity> _left = left;
+    /// <value>
+    /// The left <see cref="ISpecification{TEntity}" />.
+    /// </value>
+    public ISpecification<TEntity> Left { get; } = left;
 
     /// <summary>
-    /// Stores the right specification.
+    /// Gets the right specification.
     /// </summary>
-    private readonly ISpecification<TEntity> _right = right;
+    /// <value>
+    /// The right <see cref="ISpecification{TEntity}" />.
+    /// </value>
+    public ISpecification<TEntity> Right { get; } = right;
 
     /// <summary>
     /// Converts this specification to an expression.
@@ -47,8 +53,8 @@ internal sealed class OrSpecification<TEntity>(ISpecification<TEntity> left, ISp
     /// </returns>
     public override Expression<Func<TEntity, bool>> ToExpression()
     {
-        var leftExpression = _left.ToExpression();
-        var rightExpression = _right.ToExpression();
+        var leftExpression = Left.ToExpression();
+        var rightExpression = Right.ToExpression();
 
         ParameterExpression parameterExpression = Expression.Parameter(typeof(TEntity));
         BinaryExpression body = Expression.OrElse(
@@ -66,5 +72,5 @@ internal sealed class OrSpecification<TEntity>(ISpecification<TEntity> left, ISp
     /// A <see cref="string" /> object containing the textual representation of this specification.
     /// </returns>
     [ExcludeFromCodeCoverage]
-    public override string ToString() => $"( {_left} OR {_right} ) ";
+    public override string ToString() => $"( {Left} OR {Right} ) ";
 }
