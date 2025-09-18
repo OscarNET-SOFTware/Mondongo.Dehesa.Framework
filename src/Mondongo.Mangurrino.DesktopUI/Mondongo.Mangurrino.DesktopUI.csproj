@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyTitle>WPF controls for desktop applications. This library is part of Mondongo Dehesa Framework.</AssemblyTitle>
+    <Description>$(AssemblyTitle)</Description>
+    <PackageId>Mondongo.Mangurrino.DesktopUI</PackageId>
+    <PackageTags>oscarnet mondongo dehesa framework mangurrino desktop ui wpf</PackageTags>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Title>Mondongo Mangurrino Desktop UI (part of Mondongo Dehesa Framework)</Title>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+</Project>

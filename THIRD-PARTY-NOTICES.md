@@ -56,4 +56,8 @@ This project uses third-party components. Their licenses are included in the [li
   - Copyright (c) .NET Foundation and Contributors.  
     See [licenses/apache-2.0.txt](./licenses/apache-2.0.txt) for the full text.
 
++ **Xunit.StaFact** ([Microsoft Public License](https://github.com/AArnott/Xunit.StaFact/blob/main/LICENSE))  
+  - Copyright (c) Andrew Arnott.  
+    See [licenses/ms-pl.txt](./licenses/ms-pl.txt) for the full text.
+
 Please review each license for detailed terms and conditions.

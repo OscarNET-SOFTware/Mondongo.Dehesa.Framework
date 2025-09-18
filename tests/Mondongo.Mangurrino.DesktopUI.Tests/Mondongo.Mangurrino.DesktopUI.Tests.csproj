@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Mondongo.Mangurrino.DesktopUI</RootNamespace>
+    <TargetFramework>net8.0-windows</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xunit.StaFact" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Mondongo.Mangurrino.DesktopUI\Mondongo.Mangurrino.DesktopUI.csproj" />
+  </ItemGroup>
+
+</Project>

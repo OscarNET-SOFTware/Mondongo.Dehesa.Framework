@@ -1,0 +1,74 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Mondongo.Mangurrino.DesktopUI">
+
+    <!-- EditFieldBase -->
+
+    <Style TargetType="{x:Type local:EditFieldBase}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:EditFieldBase}">
+                    <Grid x:Name="PART_LayoutRoot"
+                          Background="BlanchedAlmond"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition SharedSizeGroup="LeftColumnA"
+                                              Width="Auto" />
+                            <ColumnDefinition SharedSizeGroup="LeftColumnB"
+                                              Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"
+                                           SharedSizeGroup="LeftRowA" />
+                            <RowDefinition Height="Auto"
+                                           SharedSizeGroup="LeftRowB" />
+                        </Grid.RowDefinitions>
+                        <Border x:Name="PART_LabelContent"
+                                Background="{TemplateBinding LabelBackground}"
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                Height="{TemplateBinding LabelHeight}"
+                                HorizontalAlignment="Stretch"
+                                MinHeight="22"
+                                VerticalAlignment="Center"
+                                Width="{TemplateBinding LabelWidth}">
+                            <TextBlock x:Name="PART_Label"
+                                       Foreground="{TemplateBinding LabelForeground}"
+                                       HorizontalAlignment="Stretch"
+                                       Margin="{TemplateBinding LabelMargin}"
+                                       Text="{TemplateBinding LabelText}"
+                                       TextAlignment="{TemplateBinding LabelTextAlignment}"
+                                       VerticalAlignment="Center" />
+                        </Border>
+                        <Border x:Name="PART_FieldContent"
+                                Background="{TemplateBinding FieldBackground}"
+                                BorderBrush="{TemplateBinding FieldBorderBrush}"
+                                BorderThickness="{TemplateBinding FieldBorderThickness}"
+                                CornerRadius="{TemplateBinding FieldBorderCornerRadius}"
+                                Grid.Column="1"
+                                Grid.Row="0"
+                                Height="{TemplateBinding FieldHeight}"
+                                HorizontalAlignment="{TemplateBinding FieldHorizontalAlignment}"
+                                MinHeight="22"
+                                VerticalAlignment="Stretch"
+                                Width="{TemplateBinding FieldWidth}">
+                            <TextBox x:Name="PART_Field"
+                                     Background="Transparent"
+                                     BorderBrush="Transparent"
+                                     BorderThickness="0"
+                                     CaretBrush="{TemplateBinding FieldForeground}"
+                                     Foreground="{TemplateBinding FieldForeground}"
+                                     HorizontalAlignment="Stretch"
+                                     HorizontalContentAlignment="Left"
+                                     Margin="3 0"
+                                     TextAlignment="{TemplateBinding FieldTextAlignment}"
+                                     VerticalAlignment="Stretch"
+                                     VerticalContentAlignment="Center" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

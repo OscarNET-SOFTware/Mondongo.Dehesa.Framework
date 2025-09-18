@@ -17,7 +17,6 @@ set _TestsResultsCoverageDir=%_TestsResultsDir%coverage\
 set _TestsResultsHistoryDir=%_TestsResultsDir%history\
 set _TestsResultsOutputsDir=%_TestsResultsDir%outputs\
 set _DotNetConfiguration=Debug
-set _DotNetFramework=net8.0
 set _DotNetRuntime=win-x64
 set _ReportGeneratorPath=%UserProfile%\.nuget\packages\reportgenerator\5.4.11\tools\net8.0\ReportGenerator.dll
 
@@ -43,7 +42,6 @@ echo.
 dotnet test %_RepoDir%Mondongo.Dehesa.Framework.sln ^
     --configuration %_DotNetConfiguration% ^
     --collect "XPlat Code Coverage" ^
-    --framework %_DotNetFramework% ^
     --results-directory %_TestsResultsOutputsDir% ^
     --runtime %_DotNetRuntime% ^
     --verbosity quiet ^
@@ -78,7 +76,6 @@ echo.
 :END
 endlocal
 set _DotNetConfiguration=
-set _DotNetFramework=
 set _DotNetRuntime=
 set _RepoDir=
 set _ReportGeneratorPath=
