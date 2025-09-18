@@ -57,7 +57,7 @@ This convention makes it easy to quickly identify the purpose of each module and
 
 ## Getting started
 ### Prerequisites
-- .NET SDK 8.0.411 or later [ [Release notes](https://github.com/dotnet/core/blob/main/release-notes/8.0/8.0.17/8.0.17.md?WT.mc_id=dotnet-35129-website) | [Support Policy](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core) ]
+- .NET SDK 8.0.414 or later [ [Release notes](https://github.com/dotnet/core/blob/main/release-notes/8.0/8.0.20/8.0.20.md?WT.mc_id=dotnet-35129-website) | [Support Policy](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core) ]
 - Visual Studio 2022 (17.10.0 or later) [ [Release History](https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-history?view=vs-2022) ]
 
 ### Installation

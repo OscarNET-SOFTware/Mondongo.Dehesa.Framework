@@ -57,7 +57,7 @@ Esta convención facilita la identificación rápida del propósito de cada mód
 
 ## Empezando
 ### Prerrequisitos
-- .NET SDK 8.0.411 o posterior [ [Notas de la versión](https://github.com/dotnet/core/blob/main/release-notes/8.0/8.0.17/8.0.17.md?WT.mc_id=dotnet-35129-website) | [Directiva de soporte técnico](https://dotnet.microsoft.com/es-es/platform/support/policy/dotnet-core) ]
+- .NET SDK 8.0.414 o posterior [ [Notas de la versión](https://github.com/dotnet/core/blob/main/release-notes/8.0/8.0.20/8.0.20.md?WT.mc_id=dotnet-35129-website) | [Directiva de soporte técnico](https://dotnet.microsoft.com/es-es/platform/support/policy/dotnet-core) ]
 - Visual Studio 2022 (17.10.0 o posterior) [ [Historial de versiones](https://learn.microsoft.com/es-es/visualstudio/releases/2022/release-history?view=vs-2022) ]
 
 ### Instalación
