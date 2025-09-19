@@ -39,6 +39,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mondongo.Mangurrino.Desktop
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mondongo.Mangurrino.DesktopUI.Tests", "tests\Mondongo.Mangurrino.DesktopUI.Tests\Mondongo.Mangurrino.DesktopUI.Tests.csproj", "{F5D2D88C-BD99-4E8D-ABC2-0EDD9D7DE43C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{4D909B58-2B70-41CC-A5AE-552BEE9D35C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mondongo.Mangurrino.DesktopUI.CatalogApp", "examples\Mondongo.Mangurrino.DesktopUI.CatalogApp\Mondongo.Mangurrino.DesktopUI.CatalogApp.csproj", "{926CE5D1-6F91-4787-AD12-5ED7312DABAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,6 +113,10 @@ Global
 		{F5D2D88C-BD99-4E8D-ABC2-0EDD9D7DE43C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5D2D88C-BD99-4E8D-ABC2-0EDD9D7DE43C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5D2D88C-BD99-4E8D-ABC2-0EDD9D7DE43C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{926CE5D1-6F91-4787-AD12-5ED7312DABAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{926CE5D1-6F91-4787-AD12-5ED7312DABAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{926CE5D1-6F91-4787-AD12-5ED7312DABAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{926CE5D1-6F91-4787-AD12-5ED7312DABAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -130,6 +138,7 @@ Global
 		{0AD492CF-A0D0-4670-A79C-12F421B83269} = {F9D50B39-7ECA-4D16-ADB1-0C0AC5EF6F40}
 		{25D0C56A-48C1-4E96-B97E-E2E7D57B33A2} = {F9D50B39-7ECA-4D16-ADB1-0C0AC5EF6F40}
 		{F5D2D88C-BD99-4E8D-ABC2-0EDD9D7DE43C} = {058084CC-41A7-4944-9466-A933DC174CBA}
+		{926CE5D1-6F91-4787-AD12-5ED7312DABAD} = {4D909B58-2B70-41CC-A5AE-552BEE9D35C1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C858837A-6ECB-495B-857D-A30015A549A6}

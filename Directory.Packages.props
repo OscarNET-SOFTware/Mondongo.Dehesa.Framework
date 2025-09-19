@@ -10,6 +10,7 @@
     <SystemVersion>9.0.7</SystemVersion>
   </PropertyGroup>
   <ItemGroup>
+    <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageVersion Include="CSharpFunctionalExtensions" Version="3.6.0" />
     <!-- Dapper -->
     <PackageVersion Include="Dapper" Version="$(DapperVersion)" />

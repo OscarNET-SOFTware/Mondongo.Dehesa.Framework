@@ -11,6 +11,7 @@ echo.
 setlocal enabledelayedexpansion
 set _ScriptsDir=%~dp0
 set _RepoDir=%_ScriptsDir:scripts\=%
+set _ExamplesDir=%_RepoDir%examples\
 set _SourceDir=%_RepoDir%src\
 set _TestsDir=%_RepoDir%tests\
 
@@ -29,7 +30,7 @@ echo.
 echo DELETING THE FOLLOWING '%_CurrentFolder%' FOLDERS:
 echo.
 set _FolderExists=false
-for %%d in (%_SourceDir%, %_TestsDir%) do (
+for %%d in (%_ExamplesDir%, %_SourceDir%, %_TestsDir%) do (
     for /f "tokens=*" %%a in ('dir %%d /s /b /o:n /ad ^| findstr /i "\\%_CurrentFolder%$"') do (
         set _FolderExists=true
         set _=%%a
@@ -50,6 +51,7 @@ set _FolderExists=
 set _NextStep=
 set _RepoDir=
 set _ScriptsDir=
+set _ExamplesDir=
 set _SourceDir=
 set _TestsDir=
 endlocal
