@@ -12,6 +12,7 @@
 // </copyright>
 // ---------------------------------------------------------------------------------------------------------------------
 
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media;
 
@@ -90,6 +91,20 @@ partial class EditFieldBase
     {
         get => (double)GetValue(FieldHeightProperty);
         set => SetValue(FieldHeightProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the text of the field.
+    /// </summary>
+    /// <value>
+    /// A <see cref="string" /> containing the text of the field.
+    /// </value>
+    [Browsable(false)]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public string FieldText
+    {
+        get => (string)GetValue(FieldTextProperty);
+        protected internal set => SetValue(FieldTextProperty, value);
     }
 
     /// <summary>

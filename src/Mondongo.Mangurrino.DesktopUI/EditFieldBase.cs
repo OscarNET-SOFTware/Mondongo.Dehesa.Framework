@@ -81,8 +81,55 @@ public abstract partial class EditFieldBase : Control
     protected EditFieldBase()
         : base()
     {
+        Unloaded += OnEditFieldUnloaded;
     }
 
+    /// <summary>
+    /// Checks whether the field-related template parts are successfully retrieved and not null.
+    /// </summary>
+    /// <param name="editField">The <see cref="EditFieldBase" /> instance to validate.</param>
+    /// <returns>
+    ///   <c>True</c> if both <c>_fieldContent</c> and <c>_field</c> are not null; otherwise, <c>false</c>.
+    /// </returns>
+    protected static bool AreFieldPartsValid(EditFieldBase editField) =>
+        editField._fieldContent is not null
+        && editField._field is not null;
+
+    /// <summary>
+    /// Checks whether the label-related template parts are successfully retrieved and not null.
+    /// </summary>
+    /// <param name="editField">The <see cref="EditFieldBase" /> instance to validate.</param>
+    /// <returns>
+    ///   <c>True</c> if both <c>_labelContent</c> and <c>_label</c> are not null; otherwise, <c>false</c>.
+    /// </returns>
+    protected static bool AreLabelPartsValid(EditFieldBase editField) =>
+        editField._labelContent is not null
+        && editField._label is not null;
+
+    /// <summary>
+    /// Checks whether all required template parts of the given <see cref="EditFieldBase" />
+    /// instance are successfully retrieved and not null by aggregating validations of layout,
+    /// label, and field parts.
+    /// </summary>
+    /// <param name="editField">The <see cref="EditFieldBase" /> instance of the control to validate
+    /// its template parts.</param>
+    /// <returns>
+    ///   <c>True</c> if all template parts are valid (non-null); otherwise, <c>false</c>.
+    /// </returns>
+    protected static bool AreTemplatePartsValid(EditFieldBase editField) =>
+        IsLayoutRootValid(editField)
+        && AreLabelPartsValid(editField)
+        && AreFieldPartsValid(editField);
+
+    /// <summary>
+    /// Checks whether the layout root template part is successfully retrieved and not null.
+    /// </summary>
+    /// <param name="editField">The <see cref="EditFieldBase" /> instance to validate.</param>
+    /// <returns>
+    ///   <c>True</c> if <c>_layoutRoot</c> is not null; otherwise, <c>false</c>.
+    /// </returns>
+    protected static bool IsLayoutRootValid(EditFieldBase editField) =>
+        editField._layoutRoot is not null;
     /// <summary>
     /// Returns the named element in the visual tree of an instantiated <see cref="ControlTemplate" />.
     /// </summary>
@@ -98,49 +145,27 @@ public abstract partial class EditFieldBase : Control
     protected virtual object? GetTemplateChildWrapper(string name) => GetTemplateChild(name);
 
     /// <summary>
-    /// Checks whether the field-related template parts are successfully retrieved and not null.
+    /// Occurs when the field gets logical focus.
     /// </summary>
-    /// <param name="editField">The <see cref="EditFieldBase" /> instance to validate.</param>
-    /// <returns>
-    ///   <c>True</c> if both <c>_fieldContent</c> and <c>_field</c> are not null; otherwise, <c>false</c>.
-    /// </returns>
-    private static bool AreFieldPartsValid(EditFieldBase editField) =>
-        editField._fieldContent is not null
-        && editField._field is not null;
+    /// <param name="sender">The object where the event handler is attached.</param>
+    /// <param name="e">The event data.</param>
+    [ExcludeFromCodeCoverage]
+    protected internal virtual void OnFieldGotFocus(object sender, RoutedEventArgs e) { }
 
     /// <summary>
-    /// Checks whether the label-related template parts are successfully retrieved and not null.
+    /// Occurs when the field loses logical focus.
     /// </summary>
-    /// <param name="editField">The <see cref="EditFieldBase" /> instance to validate.</param>
-    /// <returns>
-    ///   <c>True</c> if both <c>_labelContent</c> and <c>_label</c> are not null; otherwise, <c>false</c>.
-    /// </returns>
-    private static bool AreLabelPartsValid(EditFieldBase editField) =>
-        editField._labelContent is not null
-        && editField._label is not null;
+    /// <param name="sender">The object where the event handler is attached.</param>
+    /// <param name="e">The event data.</param>
+    [ExcludeFromCodeCoverage]
+    protected internal virtual void OnFieldLostFocus(object sender, RoutedEventArgs e) { }
 
     /// <summary>
-    /// Checks whether all required template parts of the given <see cref="EditFieldBase" />
-    /// instance are successfully retrieved and not null by aggregating validations of layout,
-    /// label, and field parts.
+    /// Occurs when the element is removed from within an element tree of loaded elements.
     /// </summary>
-    /// <param name="editField">The <see cref="EditFieldBase" /> instance of the control to validate
-    /// its template parts.</param>
-    /// <returns>
-    ///   <c>True</c> if all template parts are valid (non-null); otherwise, <c>false</c>.
-    /// </returns>
-    private static bool AreTemplatePartsValid(EditFieldBase editField) =>
-        IsLayoutRootValid(editField)
-        && AreLabelPartsValid(editField)
-        && AreFieldPartsValid(editField);
-
-    /// <summary>
-    /// Checks whether the layout root template part is successfully retrieved and not null.
-    /// </summary>
-    /// <param name="editField">The <see cref="EditFieldBase" /> instance to validate.</param>
-    /// <returns>
-    ///   <c>True</c> if <c>_layoutRoot</c> is not null; otherwise, <c>false</c>.
-    /// </returns>
-    private static bool IsLayoutRootValid(EditFieldBase editField) =>
-        editField._layoutRoot is not null;
+    /// <param name="sender">The object where the event handler is attached.</param>
+    /// <param name="e">The event data.</param>
+    [ExcludeFromCodeCoverage]
+    private static void OnEditFieldUnloaded(object sender, RoutedEventArgs e) =>
+        ((EditFieldBase)sender).UnsubscribeEvents();
 }

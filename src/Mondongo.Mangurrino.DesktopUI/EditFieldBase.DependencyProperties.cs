@@ -100,6 +100,18 @@ partial class EditFieldBase
             typeMetadata: new PropertyMetadata(TextAlignment.Left));
 
     /// <summary>
+    /// Identifies the <see cref="FieldText" /> dependency property.
+    /// </summary>
+    public static readonly DependencyProperty FieldTextProperty =
+        DependencyProperty.Register(
+            name: nameof(FieldText),
+            propertyType: typeof(string),
+            ownerType: typeof(EditFieldBase),
+            typeMetadata: new FrameworkPropertyMetadata(
+                defaultValue: string.Empty,
+                flags: FrameworkPropertyMetadataOptions.NotDataBindable));
+
+    /// <summary>
     /// Identifies the <see cref="FieldWidth" /> dependency property.
     /// </summary>
     public static readonly DependencyProperty FieldWidthProperty =

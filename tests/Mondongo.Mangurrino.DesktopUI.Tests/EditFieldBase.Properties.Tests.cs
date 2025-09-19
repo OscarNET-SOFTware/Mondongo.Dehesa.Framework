@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="EditFieldBaseTests.Properties.cs" company="OscarNET-SOFTware">
+// <copyright file="EditFieldBase.Properties.Tests.cs" company="OscarNET-SOFTware">
 // ···
 //      Mondongo.Dehesa.Framework - Just a set of essential libraries for DotNET: clean, simple and ready to use.
 // ···
@@ -22,7 +22,7 @@ public sealed partial class EditFieldBaseTests
     [WpfFact]
     public void FieldBackground_can_be_set_and_get_as_expected()
     {
-        var sut = new TestEditFieldBase();
+        var sut = new TestEditField();
 
         SolidColorBrush brush = Brushes.Red;
         sut.FieldBackground = brush;
@@ -33,7 +33,7 @@ public sealed partial class EditFieldBaseTests
     [WpfFact]
     public void FieldBorderBrush_can_be_set_and_get_as_expected()
     {
-        var sut = new TestEditFieldBase();
+        var sut = new TestEditField();
 
         SolidColorBrush brush = Brushes.Blue;
         sut.FieldBorderBrush = brush;
@@ -44,7 +44,7 @@ public sealed partial class EditFieldBaseTests
     [WpfFact]
     public void FieldBorderCornerRadius_can_be_set_and_get_as_expected()
     {
-        var sut = new TestEditFieldBase();
+        var sut = new TestEditField();
 
         var radius = new CornerRadius(5);
         sut.FieldBorderCornerRadius = radius;
@@ -55,7 +55,7 @@ public sealed partial class EditFieldBaseTests
     [WpfFact]
     public void FieldBorderThickness_can_be_set_and_get_as_expected()
     {
-        var sut = new TestEditFieldBase();
+        var sut = new TestEditField();
 
         var thickness = new Thickness(2, 3, 2, 3);
         sut.FieldBorderThickness = thickness;
@@ -66,7 +66,7 @@ public sealed partial class EditFieldBaseTests
     [WpfFact]
     public void FieldForeground_can_be_set_and_get_as_expected()
     {
-        var sut = new TestEditFieldBase();
+        var sut = new TestEditField();
 
         SolidColorBrush brush = Brushes.Green;
         sut.FieldForeground = brush;
@@ -77,7 +77,7 @@ public sealed partial class EditFieldBaseTests
     [WpfFact]
     public void FieldHeight_can_be_set_and_get_as_expected()
     {
-        var sut = new TestEditFieldBase();
+        var sut = new TestEditField();
 
         double value = 100.5D;
         sut.FieldHeight = value;
@@ -88,7 +88,7 @@ public sealed partial class EditFieldBaseTests
     [WpfFact]
     public void FieldTextAlignment_can_be_set_and_get_as_expected()
     {
-        var sut = new TestEditFieldBase
+        var sut = new TestEditField
         {
             FieldTextAlignment = TextAlignment.Center
         };
@@ -99,7 +99,7 @@ public sealed partial class EditFieldBaseTests
     [WpfFact]
     public void FieldWidth_can_be_set_and_get_as_expected()
     {
-        var sut = new TestEditFieldBase();
+        var sut = new TestEditField();
 
         double value = 200.25D;
         sut.FieldWidth = value;
@@ -110,7 +110,7 @@ public sealed partial class EditFieldBaseTests
     [WpfFact]
     public void FieldHorizontalAlignment_can_be_set_and_get_as_expected()
     {
-        var sut = new TestEditFieldBase
+        var sut = new TestEditField
         {
             FieldHorizontalAlignment = HorizontalAlignment.Right
         };
@@ -121,7 +121,7 @@ public sealed partial class EditFieldBaseTests
     [WpfFact]
     public void LabelBackground_can_be_set_and_get_as_expected()
     {
-        var sut = new TestEditFieldBase();
+        var sut = new TestEditField();
 
         SolidColorBrush brush = Brushes.Yellow;
         sut.LabelBackground = brush;
@@ -132,7 +132,7 @@ public sealed partial class EditFieldBaseTests
     [WpfFact]
     public void LabelForeground_can_be_set_and_get_as_expected()
     {
-        var sut = new TestEditFieldBase();
+        var sut = new TestEditField();
 
         SolidColorBrush brush = Brushes.Black;
         sut.LabelForeground = brush;
@@ -143,7 +143,7 @@ public sealed partial class EditFieldBaseTests
     [WpfFact]
     public void LabelHeight_can_be_set_and_get_as_expected()
     {
-        var sut = new TestEditFieldBase();
+        var sut = new TestEditField();
 
         double value = 50D;
         sut.LabelHeight = value;
@@ -154,7 +154,7 @@ public sealed partial class EditFieldBaseTests
     [WpfFact]
     public void LabelMargin_can_be_set_and_get_as_expected()
     {
-        var sut = new TestEditFieldBase();
+        var sut = new TestEditField();
 
         var margin = new Thickness(1, 2, 3, 4);
         sut.LabelMargin = margin;
@@ -170,7 +170,7 @@ public sealed partial class EditFieldBaseTests
     [InlineData(EditFieldLabelPosition.None)]
     public void LabelPosition_can_be_set_and_get_as_expected(EditFieldLabelPosition labelPosition)
     {
-        var sut = new TestEditFieldBase
+        var sut = new TestEditField
         {
             LabelPosition = labelPosition
         };
@@ -181,7 +181,7 @@ public sealed partial class EditFieldBaseTests
     [WpfFact]
     public void LabelText_can_be_set_and_get_as_expected()
     {
-        var sut = new TestEditFieldBase();
+        var sut = new TestEditField();
 
         string text = "LabelTextExample";
         sut.LabelText = text;
@@ -192,7 +192,7 @@ public sealed partial class EditFieldBaseTests
     [WpfFact]
     public void LabelTextAlignment_can_be_set_and_get_as_expected()
     {
-        var sut = new TestEditFieldBase
+        var sut = new TestEditField
         {
             LabelTextAlignment = TextAlignment.Right
         };
@@ -203,7 +203,7 @@ public sealed partial class EditFieldBaseTests
     [WpfFact]
     public void LabelWidth_can_be_set_and_get_as_expected()
     {
-        var sut = new TestEditFieldBase();
+        var sut = new TestEditField();
 
         double value = 75.75D;
         sut.LabelWidth = value;

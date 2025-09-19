@@ -26,14 +26,42 @@ partial class EditFieldBase
     {
         base.OnApplyTemplate();
 
+        UnsubscribeEvents();
+
         _layoutRoot = GetTemplateChildWrapper("PART_LayoutRoot") as Grid;
         _labelContent = GetTemplateChildWrapper("PART_LabelContent") as Border;
         _label = GetTemplateChildWrapper("PART_Label") as TextBlock;
         _fieldContent = GetTemplateChildWrapper("PART_FieldContent") as Border;
         _field = GetTemplateChildWrapper("PART_Field") as TextBox;
 
+        SubscribeEvents();
+
         UpdateLabelPosition(this, LabelPosition);
         UpdateLabelMargin(this, LabelPosition);
+    }
+
+    /// <summary>
+    /// Subscribe the necessary event handlers.
+    /// </summary>
+    protected internal virtual void SubscribeEvents()
+    {
+        if (_field != null)
+        {
+            _field.GotFocus += OnFieldGotFocus;
+            _field.LostFocus += OnFieldLostFocus;
+        }
+    }
+
+    /// <summary>
+    /// Unsubscribe event handlers to avoid memory leaks.
+    /// </summary>
+    protected internal virtual void UnsubscribeEvents()
+    {
+        if (_field != null)
+        {
+            _field.GotFocus -= OnFieldGotFocus;
+            _field.LostFocus -= OnFieldLostFocus;
+        }
     }
 
     /// <summary>
