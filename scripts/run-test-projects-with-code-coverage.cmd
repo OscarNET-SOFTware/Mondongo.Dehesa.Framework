@@ -18,7 +18,7 @@ set _TestsResultsHistoryDir=%_TestsResultsDir%history\
 set _TestsResultsOutputsDir=%_TestsResultsDir%outputs\
 set _DotNetConfiguration=Debug
 set _DotNetRuntime=win-x64
-set _ReportGeneratorPath=%UserProfile%\.nuget\packages\reportgenerator\5.4.11\tools\net8.0\ReportGenerator.dll
+set _ReportGeneratorPath=%UserProfile%\.nuget\packages\reportgenerator\5.4.13\tools\net8.0\ReportGenerator.dll
 
 :CREATE_TEST_RESULTS_FOLDERS_IF_APPLICABLE
 if not exist %_TestsResultsDir% mkdir %_TestsResultsDir%
