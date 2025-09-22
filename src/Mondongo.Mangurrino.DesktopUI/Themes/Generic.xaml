@@ -9,7 +9,6 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:EditFieldBase}">
                     <Grid x:Name="PART_LayoutRoot"
-                          Background="BlanchedAlmond"
                           HorizontalAlignment="Left"
                           VerticalAlignment="Top">
                         <Grid.ColumnDefinitions>
@@ -71,4 +70,9 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!-- TextField -->
+
+    <Style BasedOn="{StaticResource {x:Type local:EditFieldBase}}"
+           TargetType="{x:Type local:TextField}" />
 </ResourceDictionary>

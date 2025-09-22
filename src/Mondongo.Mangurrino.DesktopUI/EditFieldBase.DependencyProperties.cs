@@ -139,7 +139,7 @@ partial class EditFieldBase
             name: nameof(LabelForeground),
             propertyType: typeof(Brush),
             ownerType: typeof(EditFieldBase),
-            typeMetadata: new PropertyMetadata(SystemColors.ControlTextBrush));
+            typeMetadata: new PropertyMetadata(Brushes.Black));
 
     /// <summary>
     /// Identifies the <see cref="LabelHeight" /> dependency property.
