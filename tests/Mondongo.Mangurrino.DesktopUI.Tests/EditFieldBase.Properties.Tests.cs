@@ -163,6 +163,30 @@ public sealed partial class EditFieldBaseTests
     }
 
     [WpfFact]
+    public void FieldMaxLength_can_be_set_and_get_as_expected()
+    {
+        const int MaxLength = 25;
+        var sut = new TestEditField
+        {
+            FieldMaxLength = MaxLength
+        };
+
+        Assert.Equal(MaxLength, sut.FieldMaxLength);
+    }
+
+    [WpfFact]
+    public void FieldMinLength_can_be_set_and_get_as_expected()
+    {
+        const int MinLength = 5;
+        var sut = new TestEditField
+        {
+            FieldMinLength = MinLength
+        };
+
+        Assert.Equal(MinLength, sut.FieldMinLength);
+    }
+
+    [WpfFact]
     public void FieldTextAlignment_can_be_set_and_get_as_expected()
     {
         var sut = new TestEditField

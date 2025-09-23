@@ -86,7 +86,22 @@
                                       Margin="0,0,0,10"
                                       SelectedValue="{Binding SelectedLabelTextAlignment, Mode=TwoWay}" />
 
-                            <TextBlock Text="Is Enabled:"/>
+                            <TextBlock Text="IsEnabled"/>
+                            <CheckBox IsChecked="{Binding IsEnabled, Mode=TwoWay}" Margin="0,0,0,10"/>
+                        </StackPanel>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type localViewModels:MemoFieldViewModel}">
+                        <StackPanel>
+                            <TextBlock Text="Display Name" />
+                            <TextBlock Margin="0,0,0,10"
+                                       Text="{Binding Name, Mode=OneTime}" />
+
+                            <TextBlock Text="LabelPosition" />
+                            <ComboBox ItemsSource="{Binding LabelPositions, Mode=OneTime}"
+                                      Margin="0,0,0,10"
+                                      SelectedValue="{Binding SelectedLabelPosition, Mode=TwoWay}" />
+
+                            <TextBlock Text="IsEnabled"/>
                             <CheckBox IsChecked="{Binding IsEnabled, Mode=TwoWay}" Margin="0,0,0,10"/>
                         </StackPanel>
                     </DataTemplate>
@@ -99,6 +114,9 @@
             <ContentControl.Resources>
                 <DataTemplate DataType="{x:Type localViewModels:TextFieldViewModel}">
                     <localViews:TextFieldView />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type localViewModels:MemoFieldViewModel}">
+                    <localViews:MemoFieldView />
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>

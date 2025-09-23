@@ -191,6 +191,30 @@ partial class EditFieldBase
     }
 
     /// <summary>
+    /// Gets or sets the maximum length allowed for the field value.
+    /// </summary>
+    /// <value>
+    /// An integer specifying the maximum number of characters allowed.
+    /// </value>
+    public int FieldMaxLength
+    {
+        get => (int)GetValue(FieldMaxLengthProperty);
+        set => SetValue(FieldMaxLengthProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the minimum length allowed for the field value.
+    /// </summary>
+    /// <value>
+    /// An integer specifying the minimum number of characters allowed.
+    /// </value>
+    public int FieldMinLength
+    {
+        get => (int)GetValue(FieldMinLengthProperty);
+        set => SetValue(FieldMinLengthProperty, value);
+    }
+
+    /// <summary>
     /// Gets or sets the text of the field.
     /// </summary>
     /// <value>

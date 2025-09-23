@@ -44,6 +44,14 @@ public class TextField : EditFieldBase<string?>
     }
 
     /// <summary>
+    /// Gets the maximum allowed length for the field value.
+    /// </summary>
+    /// <value>
+    /// The maximum length allowed for the field content.
+    /// </value>
+    protected internal override int MaxAllowedLength => 255;
+
+    /// <summary>
     /// Converts the string representation of a given field to its type value equivalent.
     /// A return value indicates whether the operation succeeded.
     /// </summary>
@@ -53,7 +61,7 @@ public class TextField : EditFieldBase<string?>
     /// <returns>
     ///   <c>True</c> if <paramref name="fieldText" /> was successfully parsed; otherwise, <c>false</c>.
     /// </returns>
-    protected override bool TryParseFieldValue(string fieldText, out string? fieldValue)
+    protected internal override bool TryParseFieldValue(string fieldText, out string? fieldValue)
     {
         fieldValue = fieldText;
         return true;

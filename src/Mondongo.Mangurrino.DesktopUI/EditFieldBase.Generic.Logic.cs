@@ -77,7 +77,7 @@ partial class EditFieldBase<TFieldValue>
     /// <returns>
     ///   <c>True</c> if <paramref name="fieldText" /> was successfully parsed; otherwise, <c>false</c>.
     /// </returns>
-    protected abstract bool TryParseFieldValue(string fieldText, out TFieldValue? fieldValue);
+    protected internal abstract bool TryParseFieldValue(string fieldText, out TFieldValue? fieldValue);
 
     /// <summary>
     /// Updates the text of the field.

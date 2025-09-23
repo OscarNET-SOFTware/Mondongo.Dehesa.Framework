@@ -30,7 +30,7 @@
                                 Height="{TemplateBinding LabelHeight}"
                                 HorizontalAlignment="Stretch"
                                 MinHeight="22"
-                                VerticalAlignment="Center"
+                                VerticalAlignment="Top"
                                 Width="{TemplateBinding LabelWidth}">
                             <TextBlock x:Name="PART_Label"
                                        Foreground="{TemplateBinding LabelForeground}"
@@ -61,9 +61,11 @@
                                      HorizontalAlignment="Stretch"
                                      HorizontalContentAlignment="Left"
                                      Margin="3 0"
+                                     MaxLength="{TemplateBinding FieldMaxLength}"
+                                     Padding="0 2 0 2"
                                      TextAlignment="{TemplateBinding FieldTextAlignment}"
                                      VerticalAlignment="Stretch"
-                                     VerticalContentAlignment="Center" />
+                                     VerticalContentAlignment="Top" />
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -104,6 +106,11 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!-- MemoField -->
+
+    <Style BasedOn="{StaticResource {x:Type local:EditFieldBase}}"
+           TargetType="{x:Type local:MemoField}" />
 
     <!-- TextField -->
 

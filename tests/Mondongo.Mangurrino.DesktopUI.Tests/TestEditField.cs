@@ -16,7 +16,7 @@ using System.Windows.Controls;
 
 namespace Mondongo.Mangurrino.DesktopUI;
 
-internal class TestEditField : EditFieldBase<string>
+internal class TestEditField : MemoField
 {
     private readonly Dictionary<string, object> _templateChildren = [];
 
@@ -79,7 +79,7 @@ internal class TestEditField : EditFieldBase<string>
         return null;
     }
 
-    protected override bool TryParseFieldValue(string fieldText, out string? fieldValue)
+    protected internal override bool TryParseFieldValue(string fieldText, out string? fieldValue)
     {
         fieldValue = fieldText;
         return true;

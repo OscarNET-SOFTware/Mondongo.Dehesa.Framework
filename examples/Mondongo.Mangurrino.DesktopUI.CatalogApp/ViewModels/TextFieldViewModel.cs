@@ -55,6 +55,7 @@ internal sealed class TextFieldViewModel : ObservableObject, ITestControlViewMod
         get => _isEnabled;
         set => SetProperty(ref _isEnabled, value);
     }
+
     public ObservableCollection<EditFieldLabelPosition> LabelPositions { get; }
     public ObservableCollection<TextAlignment> LabelTextAlignments { get; }
 

@@ -150,6 +150,34 @@ partial class EditFieldBase
             typeMetadata: new PropertyMetadata(HorizontalAlignment.Left));
 
     /// <summary>
+    /// Identifies the <see cref="FieldMaxLength" /> dependency property.
+    /// </summary>
+    public static readonly DependencyProperty FieldMaxLengthProperty =
+       DependencyProperty.Register(
+           name: nameof(FieldMaxLength),
+           propertyType: typeof(int),
+           ownerType: typeof(EditFieldBase),
+           typeMetadata: new FrameworkPropertyMetadata(
+               defaultValue: int.MaxValue,
+               flags: FrameworkPropertyMetadataOptions.None,
+               propertyChangedCallback: null,
+               coerceValueCallback: CoerceFieldLength));
+
+    /// <summary>
+    /// Identifies the <see cref="FieldMinLength" /> dependency property.
+    /// </summary>
+    public static readonly DependencyProperty FieldMinLengthProperty =
+        DependencyProperty.Register(
+            name: nameof(FieldMinLength),
+            propertyType: typeof(int),
+            ownerType: typeof(EditFieldBase),
+            typeMetadata: new FrameworkPropertyMetadata(
+                defaultValue: 0,
+                flags: FrameworkPropertyMetadataOptions.None,
+                propertyChangedCallback: null,
+                coerceValueCallback: CoerceFieldLength));
+
+    /// <summary>
     /// Identifies the <see cref="FieldTextAlignment" /> dependency property.
     /// </summary>
     public static readonly DependencyProperty FieldTextAlignmentProperty =

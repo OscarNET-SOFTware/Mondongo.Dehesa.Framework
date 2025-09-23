@@ -42,9 +42,11 @@ public partial class App : Application
     private static void ConfigureServices(IServiceCollection services)
     {
         services.AddTransient<MainWindow>();
+        services.AddTransient<MemoFieldView>();
         services.AddTransient<TextFieldView>();
 
         services.AddTransient<MainViewModel>();
+        services.AddTransient<MemoFieldViewModel>();
         services.AddTransient<TextFieldViewModel>();
     }
 }

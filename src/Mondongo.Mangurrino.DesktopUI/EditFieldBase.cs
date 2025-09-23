@@ -145,6 +145,22 @@ public abstract partial class EditFieldBase : Control
     protected virtual object? GetTemplateChildWrapper(string name) => GetTemplateChild(name);
 
     /// <summary>
+    /// Gets the maximum allowed length for the field value.
+    /// </summary>
+    /// <value>
+    /// The maximum length allowed for the field content.
+    /// </value>
+    protected internal virtual int MaxAllowedLength => int.MaxValue;
+
+    /// <summary>
+    /// Gets the minimum allowed length for the field value.
+    /// </summary>
+    /// <value>
+    /// The minimum length allowed for the field content.
+    /// </value>
+    protected virtual int MinAllowedLength => 0;
+
+    /// <summary>
     /// Occurs when the field gets logical focus.
     /// </summary>
     /// <param name="sender">The object where the event handler is attached.</param>

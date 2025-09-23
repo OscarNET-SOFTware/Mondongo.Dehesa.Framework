@@ -65,6 +65,30 @@ partial class EditFieldBase
     }
 
     /// <summary>
+    /// Coerces a field length value to be within the allowed range defined by
+    /// <see cref="MinAllowedLength"/> and <see cref="MaxAllowedLength"/>.
+    /// </summary>
+    /// <param name="d">The dependency object on which the property is set.</param>
+    /// <param name="baseValue">The proposed value to be coerced.</param>
+    /// <returns>
+    /// The coerced value, guaranteed to fall between
+    /// <see cref="MinAllowedLength"/> and <see cref="MaxAllowedLength"/> inclusive.
+    /// </returns>
+    internal static object CoerceFieldLength(DependencyObject d, object baseValue)
+    {
+        var control = (EditFieldBase)d;
+        int value = (int)baseValue;
+
+        int minAllowed = control.MinAllowedLength;
+        int maxAllowed = control.MaxAllowedLength;
+
+        if (value < minAllowed) return minAllowed;
+        if (value > maxAllowed) return maxAllowed;
+
+        return value;
+    }
+
+    /// <summary>
     /// Returns the grid layout configuration corresponding to the specified label position.
     /// </summary>
     /// <param name="labelPosition">The desired <see cref="EditFieldLabelPosition"/> indicating

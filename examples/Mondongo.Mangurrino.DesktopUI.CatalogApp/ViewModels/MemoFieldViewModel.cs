@@ -1,5 +1,5 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
-// <copyright file="MainViewModel.cs" company="OscarNET-SOFTware">
+// <copyright file="MemoFieldViewModel.cs" company="OscarNET-SOFTware">
 // ···
 //      Mondongo.Dehesa.Framework - Just a set of essential libraries for DotNET: clean, simple and ready to use.
 // ···
@@ -16,32 +16,32 @@ using System.Collections.ObjectModel;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 
-using Microsoft.Extensions.DependencyInjection;
-
 namespace Mondongo.Mangurrino.DesktopUI.CatalogApp.ViewModels;
 
-internal sealed class MainViewModel : ObservableObject
+internal sealed class MemoFieldViewModel : ObservableObject, ITestControlViewModel
 {
-    private ITestControlViewModel? _selectedControl;
+    private bool _isEnabled = true;
+    private EditFieldLabelPosition _selectedLabelPosition = (EditFieldLabelPosition)EditFieldBase.LabelPositionProperty.DefaultMetadata.DefaultValue;
 
-    public MainViewModel(IServiceProvider serviceProvider)
+    public MemoFieldViewModel()
         : base()
     {
-        ArgumentNullException.ThrowIfNull(serviceProvider, nameof(serviceProvider));
-
-        Controls = [
-            serviceProvider.GetRequiredService<TextFieldViewModel>(),
-            serviceProvider.GetRequiredService<MemoFieldViewModel>()
-        ];
-
-        SelectedControl = Controls.FirstOrDefault();
+        LabelPositions = [.. Enum.GetValues<EditFieldLabelPosition>()];
     }
 
-    public ObservableCollection<ITestControlViewModel> Controls { get; }
-
-    public ITestControlViewModel? SelectedControl
+    public bool IsEnabled
     {
-        get => _selectedControl;
-        set => SetProperty(ref _selectedControl, value);
+        get => _isEnabled;
+        set => SetProperty(ref _isEnabled, value);
+    }
+
+    public ObservableCollection<EditFieldLabelPosition> LabelPositions { get; }
+
+    public string Name => nameof(MemoField);
+
+    public EditFieldLabelPosition SelectedLabelPosition
+    {
+        get => _selectedLabelPosition;
+        set => SetProperty(ref _selectedLabelPosition, value);
     }
 }
