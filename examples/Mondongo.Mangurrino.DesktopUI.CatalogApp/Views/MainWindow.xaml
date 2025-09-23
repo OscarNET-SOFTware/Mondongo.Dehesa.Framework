@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mondongo.Mangurrino.DesktopUI.CatalogApp"
+        xmlns:localControls="clr-namespace:Mondongo.Mangurrino.DesktopUI.CatalogApp.Controls"
         xmlns:localViews="clr-namespace:Mondongo.Mangurrino.DesktopUI.CatalogApp.Views"
         xmlns:localViewModels="clr-namespace:Mondongo.Mangurrino.DesktopUI.CatalogApp.ViewModels"
         mc:Ignorable="d"
@@ -12,9 +13,10 @@
     <DockPanel>
 
         <!-- Left panel with list of controls -->
-        <ListBox DockPanel.Dock="Left" Width="200"
-                 ItemsSource="{Binding Controls}"
-                 SelectedItem="{Binding SelectedControl}">
+        <ListBox DockPanel.Dock="Left"
+                 ItemsSource="{Binding Controls, Mode=OneTime}"
+                 SelectedItem="{Binding SelectedControl, Mode=TwoWay}"
+                 Width="200">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}" />
@@ -23,64 +25,52 @@
         </ListBox>
 
         <!-- Right panel for properties (binding demo) -->
-        <StackPanel DockPanel.Dock="Right" Width="250" Margin="5">
-            <TextBlock FontWeight="Bold" Text="Properties" Margin="0,0,0,10"/>
-            <ContentControl Content="{Binding SelectedControl}">
+        <StackPanel DockPanel.Dock="Right"
+                    Margin="5"
+                    Width="250">
+            <TextBlock FontWeight="Bold"
+                       Text="Properties"
+                       Margin="0,0,0,10" />
+            <ContentControl Content="{Binding SelectedControl, Mode=OneWay}">
                 <ContentControl.Resources>
                     <DataTemplate DataType="{x:Type localViewModels:TextFieldViewModel}">
                         <StackPanel>
-                            <TextBlock Text="Display Name:"/>
-                            <TextBlock Text="{Binding Name, Mode=OneTime}" Margin="0,0,0,10" />
+                            <TextBlock Text="Display Name" />
+                            <TextBlock Margin="0,0,0,10"
+                                       Text="{Binding Name, Mode=OneTime}" />
 
-                            <TextBlock Text="LabelBackground" />
-                            <ComboBox ItemsSource="{Binding AllBrushes, Mode=OneTime}"
-                                      Margin="0,0,0,10"
-                                      SelectedValue="{Binding SelectedLabelBackground, Mode=TwoWay}"
-                                      SelectedValuePath="Value">
-                                <ComboBox.ItemContainerStyle>
-                                    <Style TargetType="ComboBoxItem">
-                                        <Setter Property="ContentTemplateSelector"
-                                                Value="{x:Null}" />
-                                    </Style>
-                                </ComboBox.ItemContainerStyle>
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Rectangle Height="16"
-                                                       Fill="{Binding Value}"
-                                                       Margin="0,0,5,0"
-                                                       Stroke="Transparent"
-                                                       Width="16" />
-                                            <TextBlock Text="{Binding Key}" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
+                            <localControls:BrushSelector Caption="FieldBackground"
+                                                         SelectedValue="{Binding SelectedFieldBackground, Mode=TwoWay}"/>
 
-                            <TextBlock Text="LabelForeground" />
-                            <ComboBox ItemsSource="{Binding AllBrushes, Mode=OneTime}"
-                                      Margin="0,0,0,10"
-                                      SelectedValue="{Binding SelectedLabelForeground, Mode=TwoWay}"
-                                      SelectedValuePath="Value">
-                                <ComboBox.ItemContainerStyle>
-                                    <Style TargetType="ComboBoxItem">
-                                        <Setter Property="ContentTemplateSelector"
-                                                Value="{x:Null}" />
-                                    </Style>
-                                </ComboBox.ItemContainerStyle>
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Rectangle Height="16"
-                                                       Fill="{Binding Value}"
-                                                       Margin="0,0,5,0"
-                                                       Stroke="Transparent"
-                                                       Width="16" />
-                                            <TextBlock Text="{Binding Key}" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
+                            <localControls:BrushSelector Caption="FieldBackgroundWhenGotFocus"
+                                                         SelectedValue="{Binding SelectedFieldBackgroundWhenGotFocus, Mode=TwoWay}"/>
+
+                            <localControls:BrushSelector Caption="FieldBackgroundWhenIsDisabled"
+                                                         SelectedValue="{Binding SelectedFieldBackgroundWhenIsDisabled, Mode=TwoWay}"/>
+
+                            <localControls:BrushSelector Caption="FieldBorderBrush"
+                                                         SelectedValue="{Binding SelectedFieldBorderBrush, Mode=TwoWay}"/>
+
+                            <localControls:BrushSelector Caption="FieldBorderBrushWhenGotFocus"
+                                                         SelectedValue="{Binding SelectedFieldBorderBrushWhenGotFocus, Mode=TwoWay}"/>
+
+                            <localControls:BrushSelector Caption="FieldBorderBrushWhenIsDisabled"
+                                                         SelectedValue="{Binding SelectedFieldBorderBrushWhenIsDisabled, Mode=TwoWay}"/>
+
+                            <localControls:BrushSelector Caption="FieldForeground"
+                                                         SelectedValue="{Binding SelectedFieldForeground, Mode=TwoWay}"/>
+
+                            <localControls:BrushSelector Caption="FieldForegroundWhenGotFocus"
+                                                         SelectedValue="{Binding SelectedFieldForegroundWhenGotFocus, Mode=TwoWay}"/>
+
+                            <localControls:BrushSelector Caption="FieldForegroundWhenIsDisabled"
+                                                         SelectedValue="{Binding SelectedFieldForegroundWhenIsDisabled, Mode=TwoWay}"/>
+
+                            <localControls:BrushSelector Caption="LabelBackground"
+                                                         SelectedValue="{Binding SelectedLabelBackground, Mode=TwoWay}"/>
+
+                            <localControls:BrushSelector Caption="LabelForeground"
+                                                         SelectedValue="{Binding SelectedLabelForeground, Mode=TwoWay}"/>
 
                             <TextBlock Text="LabelPosition" />
                             <ComboBox ItemsSource="{Binding LabelPositions, Mode=OneTime}"
@@ -88,7 +78,8 @@
                                       SelectedValue="{Binding SelectedLabelPosition, Mode=TwoWay}" />
 
                             <TextBlock Text="LabelText"/>
-                            <TextBox Text="{Binding SelectedLabelText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" />
+                            <TextBox Margin="0,0,0,10"
+                                     Text="{Binding SelectedLabelText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                             <TextBlock Text="LabelTextAlignment" />
                             <ComboBox ItemsSource="{Binding LabelTextAlignments, Mode=OneTime}"
@@ -104,7 +95,7 @@
         </StackPanel>
 
         <!-- Central dynamic view -->
-        <ContentControl Content="{Binding SelectedControl}">
+        <ContentControl Content="{Binding SelectedControl, Mode=OneWay}">
             <ContentControl.Resources>
                 <DataTemplate DataType="{x:Type localViewModels:TextFieldViewModel}">
                     <localViews:TextFieldView />

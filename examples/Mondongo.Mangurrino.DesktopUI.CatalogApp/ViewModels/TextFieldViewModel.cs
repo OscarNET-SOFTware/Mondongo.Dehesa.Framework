@@ -13,7 +13,6 @@
 // ---------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.ObjectModel;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Media;
 
@@ -23,11 +22,23 @@ namespace Mondongo.Mangurrino.DesktopUI.CatalogApp.ViewModels;
 
 internal sealed class TextFieldViewModel : ObservableObject, ITestControlViewModel
 {
-    private string _displayName = "Text Field";
     private bool _isEnabled = true;
+
+    private Brush _selectedFieldBackground = (Brush)EditFieldBase.FieldBackgroundProperty.DefaultMetadata.DefaultValue;
+    private Brush _selectedFieldBackgroundWhenGotFocus = (Brush)EditFieldBase.FieldBackgroundWhenGotFocusProperty.DefaultMetadata.DefaultValue;
+    private Brush _selectedFieldBackgroundWhenIsDisabled = (Brush)EditFieldBase.FieldBackgroundWhenIsDisabledProperty.DefaultMetadata.DefaultValue;
+
+    private Brush _selectedFieldBorderBrush = (Brush)EditFieldBase.FieldBorderBrushProperty.DefaultMetadata.DefaultValue;
+    private Brush _selectedFieldBorderBrushWhenGotFocus = (Brush)EditFieldBase.FieldBorderBrushWhenGotFocusProperty.DefaultMetadata.DefaultValue;
+    private Brush _selectedFieldBorderBrushWhenIsDisabled = (Brush)EditFieldBase.FieldBorderBrushWhenIsDisabledProperty.DefaultMetadata.DefaultValue;
+
+    private Brush _selectedFieldForeground = (Brush)EditFieldBase.FieldForegroundProperty.DefaultMetadata.DefaultValue;
+    private Brush _selectedFieldForegroundWhenGotFocus = (Brush)EditFieldBase.FieldForegroundWhenGotFocusProperty.DefaultMetadata.DefaultValue;
+    private Brush _selectedFieldForegroundWhenIsDisabled = (Brush)EditFieldBase.FieldForegroundWhenIsDisabledProperty.DefaultMetadata.DefaultValue;
 
     private Brush _selectedLabelBackground = (Brush)EditFieldBase.LabelBackgroundProperty.DefaultMetadata.DefaultValue;
     private Brush _selectedLabelForeground = (Brush)EditFieldBase.LabelForegroundProperty.DefaultMetadata.DefaultValue;
+
     private EditFieldLabelPosition _selectedLabelPosition = (EditFieldLabelPosition)EditFieldBase.LabelPositionProperty.DefaultMetadata.DefaultValue;
     private TextAlignment _selectedLabelTextAlignment = (TextAlignment)EditFieldBase.LabelTextAlignmentProperty.DefaultMetadata.DefaultValue;
     private string _selectedLabelText = nameof(TextField);
@@ -35,18 +46,73 @@ internal sealed class TextFieldViewModel : ObservableObject, ITestControlViewMod
     public TextFieldViewModel()
         : base()
     {
-        AllBrushes = [.. typeof(Brushes)
-                    .GetProperties(BindingFlags.Public | BindingFlags.Static)
-                    .Select(p => new KeyValuePair<string, Brush>(p.Name, (Brush)p.GetValue(null, null)!))];
-
         LabelPositions = [.. Enum.GetValues<EditFieldLabelPosition>()];
         LabelTextAlignments = [.. Enum.GetValues<TextAlignment>()];
     }
 
-    public List<KeyValuePair<string, Brush>> AllBrushes { get; }
-
+    public bool IsEnabled
+    {
+        get => _isEnabled;
+        set => SetProperty(ref _isEnabled, value);
+    }
     public ObservableCollection<EditFieldLabelPosition> LabelPositions { get; }
     public ObservableCollection<TextAlignment> LabelTextAlignments { get; }
+
+    public string Name => nameof(TextField);
+
+    public Brush SelectedFieldBackground
+    {
+        get => _selectedFieldBackground;
+        set => SetProperty(ref _selectedFieldBackground, value);
+    }
+
+    public Brush SelectedFieldBackgroundWhenGotFocus
+    {
+        get => _selectedFieldBackgroundWhenGotFocus;
+        set => SetProperty(ref _selectedFieldBackgroundWhenGotFocus, value);
+    }
+
+    public Brush SelectedFieldBackgroundWhenIsDisabled
+    {
+        get => _selectedFieldBackgroundWhenIsDisabled;
+        set => SetProperty(ref _selectedFieldBackgroundWhenIsDisabled, value);
+    }
+
+    public Brush SelectedFieldBorderBrush
+    {
+        get => _selectedFieldBorderBrush;
+        set => SetProperty(ref _selectedFieldBorderBrush, value);
+    }
+
+    public Brush SelectedFieldBorderBrushWhenGotFocus
+    {
+        get => _selectedFieldBorderBrushWhenGotFocus;
+        set => SetProperty(ref _selectedFieldBorderBrushWhenGotFocus, value);
+    }
+
+    public Brush SelectedFieldBorderBrushWhenIsDisabled
+    {
+        get => _selectedFieldBorderBrushWhenIsDisabled;
+        set => SetProperty(ref _selectedFieldBorderBrushWhenIsDisabled, value);
+    }
+
+    public Brush SelectedFieldForeground
+    {
+        get => _selectedFieldForeground;
+        set => SetProperty(ref _selectedFieldForeground, value);
+    }
+
+    public Brush SelectedFieldForegroundWhenGotFocus
+    {
+        get => _selectedFieldForegroundWhenGotFocus;
+        set => SetProperty(ref _selectedFieldForegroundWhenGotFocus, value);
+    }
+
+    public Brush SelectedFieldForegroundWhenIsDisabled
+    {
+        get => _selectedFieldForegroundWhenIsDisabled;
+        set => SetProperty(ref _selectedFieldForegroundWhenIsDisabled, value);
+    }
 
     public Brush SelectedLabelBackground
     {
@@ -77,18 +143,4 @@ internal sealed class TextFieldViewModel : ObservableObject, ITestControlViewMod
         get => _selectedLabelText;
         set => SetProperty(ref _selectedLabelText, value);
     }
-
-    public string DisplayName
-    {
-        get => _displayName;
-        set => SetProperty(ref _displayName, value);
-    }
-
-    public bool IsEnabled
-    {
-        get => _isEnabled;
-        set => SetProperty(ref _isEnabled, value);
-    }
-
-    public string Name => "TextField";
 }

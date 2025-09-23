@@ -66,6 +66,40 @@
                                      VerticalContentAlignment="Center" />
                         </Border>
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled"
+                                 SourceName="PART_Field"
+                                 Value="False">
+                            <Setter Property="Background"
+                                    TargetName="PART_FieldContent"
+                                    Value="{Binding FieldBackgroundWhenIsDisabled, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter Property="BorderBrush"
+                                    TargetName="PART_FieldContent"
+                                    Value="{Binding FieldBorderBrushWhenIsDisabled, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter Property="CaretBrush"
+                                    TargetName="PART_Field"
+                                    Value="{Binding FieldForegroundWhenIsDisabled, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter Property="Foreground"
+                                    TargetName="PART_Field"
+                                    Value="{Binding FieldForegroundWhenIsDisabled, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused"
+                                 SourceName="PART_Field"
+                                 Value="True">
+                            <Setter Property="Background"
+                                    TargetName="PART_FieldContent"
+                                    Value="{Binding FieldBackgroundWhenGotFocus, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter Property="BorderBrush"
+                                    TargetName="PART_FieldContent"
+                                    Value="{Binding FieldBorderBrushWhenGotFocus, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter Property="CaretBrush"
+                                    TargetName="PART_Field"
+                                    Value="{Binding FieldForegroundWhenGotFocus, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter Property="Foreground"
+                                    TargetName="PART_Field"
+                                    Value="{Binding FieldForegroundWhenGotFocus, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

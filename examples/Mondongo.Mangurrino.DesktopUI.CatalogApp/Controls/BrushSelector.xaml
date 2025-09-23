@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Mondongo.Mangurrino.DesktopUI.CatalogApp.Controls.BrushSelector"
+             x:ClassModifier="internal"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Mondongo.Mangurrino.DesktopUI.CatalogApp.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel>
+        <TextBlock Text="{Binding Caption, Mode=OneTime, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+        <ComboBox ItemsSource="{Binding AllBrushes, Mode=OneTime, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                  Margin="0,0,0,10"
+                  SelectedValue="{Binding SelectedValue, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                  SelectedValuePath="Value">
+            <ComboBox.ItemContainerStyle>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="ContentTemplateSelector"
+                            Value="{x:Null}" />
+                </Style>
+            </ComboBox.ItemContainerStyle>
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Border BorderBrush="LightGray"
+                                BorderThickness="1"
+                                Margin="0,0,5,0">
+                            <Rectangle Height="15"
+                                       Fill="{Binding Value}"
+                                       Stroke="Transparent"
+                                       Width="15" />
+                        </Border>
+                        <TextBlock Text="{Binding Key}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+    </StackPanel>
+</UserControl>

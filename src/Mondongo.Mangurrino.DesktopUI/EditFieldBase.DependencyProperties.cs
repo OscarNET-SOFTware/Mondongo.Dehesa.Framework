@@ -27,7 +27,27 @@ partial class EditFieldBase
             name: nameof(FieldBackground),
             propertyType: typeof(Brush),
             ownerType: typeof(EditFieldBase),
+            typeMetadata: new PropertyMetadata(Brushes.Snow));
+
+    /// <summary>
+    /// Identifies the <see cref="FieldBackgroundWhenGotFocus" /> dependency property.
+    /// </summary>
+    public static readonly DependencyProperty FieldBackgroundWhenGotFocusProperty =
+        DependencyProperty.Register(
+            name: nameof(FieldBackgroundWhenGotFocus),
+            propertyType: typeof(Brush),
+            ownerType: typeof(EditFieldBase),
             typeMetadata: new PropertyMetadata(Brushes.GhostWhite));
+
+    /// <summary>
+    /// Identifies the <see cref="FieldBackgroundWhenIsDisabled" /> dependency property.
+    /// </summary>
+    public static readonly DependencyProperty FieldBackgroundWhenIsDisabledProperty =
+        DependencyProperty.Register(
+            name: nameof(FieldBackgroundWhenIsDisabled),
+            propertyType: typeof(Brush),
+            ownerType: typeof(EditFieldBase),
+            typeMetadata: new PropertyMetadata(Brushes.WhiteSmoke));
 
     /// <summary>
     /// Identifies the <see cref="FieldBorderBrush" /> dependency property.
@@ -37,7 +57,27 @@ partial class EditFieldBase
             name: nameof(FieldBorderBrush),
             propertyType: typeof(Brush),
             ownerType: typeof(EditFieldBase),
+            typeMetadata: new PropertyMetadata(Brushes.Navy));
+
+    /// <summary>
+    /// Identifies the <see cref="FieldBorderBrushWhenGotFocus" /> dependency property.
+    /// </summary>
+    public static readonly DependencyProperty FieldBorderBrushWhenGotFocusProperty =
+        DependencyProperty.Register(
+            name: nameof(FieldBorderBrushWhenGotFocus),
+            propertyType: typeof(Brush),
+            ownerType: typeof(EditFieldBase),
             typeMetadata: new PropertyMetadata(Brushes.RoyalBlue));
+
+    /// <summary>
+    /// Identifies the <see cref="FieldBorderBrushWhenIsDisabled" /> dependency property.
+    /// </summary>
+    public static readonly DependencyProperty FieldBorderBrushWhenIsDisabledProperty =
+        DependencyProperty.Register(
+            name: nameof(FieldBorderBrushWhenIsDisabled),
+            propertyType: typeof(Brush),
+            ownerType: typeof(EditFieldBase),
+            typeMetadata: new PropertyMetadata(Brushes.SteelBlue));
 
     /// <summary>
     /// Identifies the <see cref="FieldBorderCornerRadius" /> dependency property.
@@ -67,7 +107,27 @@ partial class EditFieldBase
             name: nameof(FieldForeground),
             propertyType: typeof(Brush),
             ownerType: typeof(EditFieldBase),
+            typeMetadata: new PropertyMetadata(Brushes.Navy));
+
+    /// <summary>
+    /// Identifies the <see cref="FieldForegroundWhenGotFocus" /> dependency property.
+    /// </summary>
+    public static readonly DependencyProperty FieldForegroundWhenGotFocusProperty =
+        DependencyProperty.Register(
+            name: nameof(FieldForegroundWhenGotFocus),
+            propertyType: typeof(Brush),
+            ownerType: typeof(EditFieldBase),
             typeMetadata: new PropertyMetadata(Brushes.RoyalBlue));
+
+    /// <summary>
+    /// Identifies the <see cref="FieldForegroundWhenIsDisabled" /> dependency property.
+    /// </summary>
+    public static readonly DependencyProperty FieldForegroundWhenIsDisabledProperty =
+        DependencyProperty.Register(
+            name: nameof(FieldForegroundWhenIsDisabled),
+            propertyType: typeof(Brush),
+            ownerType: typeof(EditFieldBase),
+            typeMetadata: new PropertyMetadata(Brushes.SteelBlue));
 
     /// <summary>
     /// Identifies the <see cref="FieldHeight" /> dependency property.

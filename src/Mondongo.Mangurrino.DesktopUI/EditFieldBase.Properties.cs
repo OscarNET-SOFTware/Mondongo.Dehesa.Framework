@@ -33,6 +33,34 @@ partial class EditFieldBase
     }
 
     /// <summary>
+    /// Gets or sets the <see cref="Brush" /> that describes the background color of the field
+    /// when got focus.
+    /// </summary>
+    /// <value>
+    /// The <see cref="Brush" /> that is used to fill the background color of the field
+    /// when got focus.
+    /// </value>
+    public Brush FieldBackgroundWhenGotFocus
+    {
+        get => (Brush)GetValue(FieldBackgroundWhenGotFocusProperty);
+        set => SetValue(FieldBackgroundWhenGotFocusProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the <see cref="Brush" /> that describes the background color of the field
+    /// when is disabled.
+    /// </summary>
+    /// <value>
+    /// The <see cref="Brush" /> that is used to fill the background color of the field
+    /// when is disabled.
+    /// </value>
+    public Brush FieldBackgroundWhenIsDisabled
+    {
+        get => (Brush)GetValue(FieldBackgroundWhenIsDisabledProperty);
+        set => SetValue(FieldBackgroundWhenIsDisabledProperty, value);
+    }
+
+    /// <summary>
     /// Gets or sets the <see cref="Brush" /> that draws the outer border color of the field.
     /// </summary>
     /// <value>
@@ -42,6 +70,34 @@ partial class EditFieldBase
     {
         get => (Brush)GetValue(FieldBorderBrushProperty);
         set => SetValue(FieldBorderBrushProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the <see cref="Brush" /> that draws the outer border color of the field
+    /// when got focus.
+    /// </summary>
+    /// <value>
+    /// The <see cref="Brush" /> that draws the outer border color of the field
+    /// when got focus.
+    /// </value>
+    public Brush FieldBorderBrushWhenGotFocus
+    {
+        get => (Brush)GetValue(FieldBorderBrushWhenGotFocusProperty);
+        set => SetValue(FieldBorderBrushWhenGotFocusProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the <see cref="Brush" /> that draws the outer border color of the field
+    /// when is disabled.
+    /// </summary>
+    /// <value>
+    /// The <see cref="Brush" /> that draws the outer border color of the field
+    /// when is disabled.
+    /// </value>
+    public Brush FieldBorderBrushWhenIsDisabled
+    {
+        get => (Brush)GetValue(FieldBorderBrushWhenIsDisabledProperty);
+        set => SetValue(FieldBorderBrushWhenIsDisabledProperty, value);
     }
 
     /// <summary>
@@ -82,6 +138,34 @@ partial class EditFieldBase
     }
 
     /// <summary>
+    /// Gets or sets the <see cref="Brush" /> that describes the foreground color of the field
+    /// when got focus.
+    /// </summary>
+    /// <value>
+    /// The <see cref="Brush" /> that paints the foreground color of the field
+    /// when got focus.
+    /// </value>
+    public Brush FieldForegroundWhenGotFocus
+    {
+        get => (Brush)GetValue(FieldForegroundWhenGotFocusProperty);
+        set => SetValue(FieldForegroundWhenGotFocusProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the <see cref="Brush" /> that describes the foreground color of the field
+    /// when is disabled.
+    /// </summary>
+    /// <value>
+    /// The <see cref="Brush" /> that paints the foreground color of the field
+    /// when is disabled.
+    /// </value>
+    public Brush FieldForegroundWhenIsDisabled
+    {
+        get => (Brush)GetValue(FieldForegroundWhenIsDisabledProperty);
+        set => SetValue(FieldForegroundWhenIsDisabledProperty, value);
+    }
+
+    /// <summary>
     /// Gets or sets the height of the field.
     /// </summary>
     /// <value>
@@ -91,6 +175,19 @@ partial class EditFieldBase
     {
         get => (double)GetValue(FieldHeightProperty);
         set => SetValue(FieldHeightProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the horizontal alignment of the field.
+    /// </summary>
+    /// <value>
+    /// One of the <see cref="HorizontalAlignment" /> values that specifies
+    /// the horizontal alignment of the field.
+    /// </value>
+    public HorizontalAlignment FieldHorizontalAlignment
+    {
+        get => (HorizontalAlignment)GetValue(FieldHorizontalAlignmentProperty);
+        set => SetValue(FieldHorizontalAlignmentProperty, value);
     }
 
     /// <summary>
@@ -129,19 +226,6 @@ partial class EditFieldBase
     {
         get => (double)GetValue(FieldWidthProperty);
         set => SetValue(FieldWidthProperty, value);
-    }
-
-    /// <summary>
-    /// Gets or sets the horizontal alignment of the field.
-    /// </summary>
-    /// <value>
-    /// One of the <see cref="HorizontalAlignment" /> values that specifies
-    /// the horizontal alignment of the field.
-    /// </value>
-    public HorizontalAlignment FieldHorizontalAlignment
-    {
-        get => (HorizontalAlignment)GetValue(FieldHorizontalAlignmentProperty);
-        set => SetValue(FieldHorizontalAlignmentProperty, value);
     }
 
     /// <summary>

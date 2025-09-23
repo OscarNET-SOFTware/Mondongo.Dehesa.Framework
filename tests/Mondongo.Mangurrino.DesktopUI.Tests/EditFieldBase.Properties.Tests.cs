@@ -31,14 +31,58 @@ public sealed partial class EditFieldBaseTests
     }
 
     [WpfFact]
-    public void FieldBorderBrush_can_be_set_and_get_as_expected()
+    public void FieldBackgroundWhenGotFocus_can_be_set_and_get_as_expected()
+    {
+        var sut = new TestEditField();
+
+        SolidColorBrush brush = Brushes.Green;
+        sut.FieldBackgroundWhenGotFocus = brush;
+
+        Assert.Equal(brush, sut.FieldBackgroundWhenGotFocus);
+    }
+
+    [WpfFact]
+    public void FieldBackgroundWhenIsDisabled_can_be_set_and_get_as_expected()
     {
         var sut = new TestEditField();
 
         SolidColorBrush brush = Brushes.Blue;
+        sut.FieldBackgroundWhenIsDisabled = brush;
+
+        Assert.Equal(brush, sut.FieldBackgroundWhenIsDisabled);
+    }
+
+    [WpfFact]
+    public void FieldBorderBrush_can_be_set_and_get_as_expected()
+    {
+        var sut = new TestEditField();
+
+        SolidColorBrush brush = Brushes.DarkRed;
         sut.FieldBorderBrush = brush;
 
         Assert.Equal(brush, sut.FieldBorderBrush);
+    }
+
+    [WpfFact]
+    public void FieldBorderBrushWhenGotFocus_can_be_set_and_get_as_expected()
+    {
+        var sut = new TestEditField();
+
+        SolidColorBrush brush = Brushes.DarkGreen;
+        sut.FieldBorderBrushWhenGotFocus = brush;
+
+        Assert.Equal(brush, sut.FieldBorderBrushWhenGotFocus);
+    }
+
+    [WpfFact]
+    public void FieldBorderBrushWhenIsDisabled_can_be_set_and_get_as_expected()
+    {
+        var sut = new TestEditField();
+
+        SolidColorBrush brush = Brushes.DarkBlue;
+        sut.FieldBorderBrushWhenIsDisabled = brush;
+
+        Assert.Equal(brush, sut.FieldBorderBrushWhenIsDisabled);
     }
 
     [WpfFact]
@@ -68,10 +112,32 @@ public sealed partial class EditFieldBaseTests
     {
         var sut = new TestEditField();
 
-        SolidColorBrush brush = Brushes.Green;
+        SolidColorBrush brush = Brushes.LightSalmon;
         sut.FieldForeground = brush;
 
         Assert.Equal(brush, sut.FieldForeground);
+    }
+
+    [WpfFact]
+    public void FieldForegroundWhenGotFocus_can_be_set_and_get_as_expected()
+    {
+        var sut = new TestEditField();
+
+        SolidColorBrush brush = Brushes.LightGreen;
+        sut.FieldForegroundWhenGotFocus = brush;
+
+        Assert.Equal(brush, sut.FieldForegroundWhenGotFocus);
+    }
+
+    [WpfFact]
+    public void FieldForegroundWhenIsDisabled_can_be_set_and_get_as_expected()
+    {
+        var sut = new TestEditField();
+
+        SolidColorBrush brush = Brushes.LightBlue;
+        sut.FieldForegroundWhenIsDisabled = brush;
+
+        Assert.Equal(brush, sut.FieldForegroundWhenIsDisabled);
     }
 
     [WpfFact]
@@ -83,6 +149,17 @@ public sealed partial class EditFieldBaseTests
         sut.FieldHeight = value;
 
         Assert.Equal(value, sut.FieldHeight);
+    }
+
+    [WpfFact]
+    public void FieldHorizontalAlignment_can_be_set_and_get_as_expected()
+    {
+        var sut = new TestEditField
+        {
+            FieldHorizontalAlignment = HorizontalAlignment.Right
+        };
+
+        Assert.Equal(HorizontalAlignment.Right, sut.FieldHorizontalAlignment);
     }
 
     [WpfFact]
@@ -105,17 +182,6 @@ public sealed partial class EditFieldBaseTests
         sut.FieldWidth = value;
 
         Assert.Equal(value, sut.FieldWidth);
-    }
-
-    [WpfFact]
-    public void FieldHorizontalAlignment_can_be_set_and_get_as_expected()
-    {
-        var sut = new TestEditField
-        {
-            FieldHorizontalAlignment = HorizontalAlignment.Right
-        };
-
-        Assert.Equal(HorizontalAlignment.Right, sut.FieldHorizontalAlignment);
     }
 
     [WpfFact]
